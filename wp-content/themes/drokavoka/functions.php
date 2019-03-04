@@ -7,6 +7,16 @@
  * @package Drokavoka
  */
 
+
+
+// INCLUDES START
+include "custom-includes/RegisterTaxonomies.php";
+// INCLUDES END
+
+
+
+
+
 if ( ! function_exists( 'drokavoka_setup' ) ) :
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
