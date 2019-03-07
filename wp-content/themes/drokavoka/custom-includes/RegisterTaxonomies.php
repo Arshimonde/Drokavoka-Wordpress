@@ -19,7 +19,7 @@
         );    
         
         register_taxonomy('lawyer_specialte','user', array(
-            // 'hierarchical' => true,
+            'hierarchical' => true,
             'labels' => $labels,
             'public' => true,
             'show_ui' => true,
