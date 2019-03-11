@@ -21,38 +21,28 @@
 </head>
 
 <body <?php body_class(); ?>>
-<div id="page" class="site">
-	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'drokavoka' ); ?></a>
+	<!-- screen readers skip link -->
+	<a class="skip-link screen-reader-text sr-only" href="#content">
+		<?php esc_html_e( 'Skip to content', 'drokavoka' ); ?>
+	</a>
+	<!-- screen readers skip link end -->
 
-	<header id="masthead" class="site-header">
-		<div class="site-branding">
-			<?php
-			the_custom_logo();
-			if ( is_front_page() && is_home() ) :
-				?>
-				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+	<!-- header -->
+	<div class="layer"></div><!-- Mobile menu overlay mask end-->
+	<?php
+		get_template_part( 'template-parts/header/preloader');
+	?>
+	<header class="header_sticky">
+		<div class="container">
+			<div class="row">
 				<?php
-			else :
+					get_template_part( 'template-parts/header/site',"logo");
+					get_template_part( 'template-parts/navigation/main',"nav");
 				?>
-				<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
-				<?php
-			endif;
-			$drokavoka_description = get_bloginfo( 'description', 'display' );
-			if ( $drokavoka_description || is_customize_preview() ) :
-				?>
-				<p class="site-description"><?php echo $drokavoka_description; /* WPCS: xss ok. */ ?></p>
-			<?php endif; ?>
-		</div><!-- .site-branding -->
+			</div>
+		</div>
+	</header>
+	<!-- header end -->
 
-		<nav id="site-navigation" class="main-navigation">
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'drokavoka' ); ?></button>
-			<?php
-			wp_nav_menu( array(
-				'theme_location' => 'menu-1',
-				'menu_id'        => 'primary-menu',
-			) );
-			?>
-		</nav><!-- #site-navigation -->
-	</header><!-- #masthead -->
-
+	<!-- content -->
 	<div id="content" class="site-content">
