@@ -27,9 +27,13 @@
                         <input 
                             type="text" 
                             class="form-control" 
-                            placeholder="<?=_e("Prénom")?>" 
+                            placeholder="<?=_e("Prénom*")?>" 
                             name="first_name" id="first_name"
+                            required
                         >
+                        <small class="form-text text-muted">
+                            <?=_e("Ce champ est requis")?>
+                        </small>
                     </div>
                 </div>
                 <!-- last name -->
@@ -38,10 +42,14 @@
                         <input 
                             type="text" 
                             class="form-control" 
-                            placeholder="<?=_e("Nom")?>" 
+                            placeholder="<?=_e("Nom*")?>" 
                             name="last_name" 
                             id="last_name"
+                            required
                         >
+                        <small class="form-text text-muted">
+                            <?=_e("Ce champ est requis")?>
+                        </small>
                     </div>
                 </div>
             </div>
@@ -50,10 +58,24 @@
                 <div class="col-lg-12">
                     <div class="form-group">
                         <!-- spécialité -->
-                        <select name="specialite[]" id="" class="selectpicker" title="Choisir une ou plusieurs spécialité "
-                            data-live-search="true" data-width="100%" data-size="8" multiple>
-                            <option value=""><?=_e("Spécialité")?></option>
+                        <select name="specialite[]" id="specialites" class="selectpicker" title="Choisir une ou plusieurs spécialité*"
+                            data-live-search="true" data-width="100%" data-size="5" multiple required>
+                            <?php
+                                $specilities = get_terms( "lawyer_specialte",         array( 
+                                        "hide_empty" => 0,
+                                        "parent" => 0
+                                    )  
+                                );
+                                foreach($specilities as $speciality):
+                           ?>
+                            <option value="<?= $speciality->term_id ?>">
+                                <?= $speciality->name  ?>
+                            </option>
+                           <?php endforeach;?>
                         </select>
+                        <small class="form-text text-muted">
+                            <?=_e("Choisir au minimum 1 spécialité")?>
+                        </small>
                     </div>
                 </div>
             </div>
@@ -65,10 +87,14 @@
                         <input 
                             type="text" 
                             class="form-control" 
-                            placeholder="<?=_e("Ville")?>" 
+                            placeholder="<?=_e("Ville*")?>" 
                             name="city" 
                             id="city"
+                            required
                         >
+                        <small class="form-text text-muted">
+                            <?=_e("Ce champ est requis")?>
+                        </small>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -92,10 +118,14 @@
                         <input 
                             type="text" 
                             class="form-control" 
-                            placeholder="<?=_e("Adresse")?>" 
+                            placeholder="<?=_e("Adresse*")?>" 
                             name="address" 
                             id="address"
+                            required
                         >
+                        <small class="form-text text-muted">
+                            <?=_e("Ce champ est requis")?>
+                        </small>
                     </div>
                 </div>
             </div>
@@ -132,28 +162,53 @@
                         <input 
                             type="email" 
                             class="form-control" 
-                            placeholder="<?=_e("Adresse mail")?>" 
+                            placeholder="<?=_e("Adresse mail*")?>" 
                             name="email" id="email"
+                            required
                         />
+                        <small class="form-text text-muted">
+                            <?=_e("Ce champ est requis. ex: example@test.com")?>
+                        </small>
                     </div>
                 </div>
             </div>
             <!-- /row -->
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <!-- username -->
+                        <input 
+                            type="text" 
+                            class="form-control" 
+                            placeholder="<?=_e("Nom d'utilisateur*")?>" 
+                            name="username" id="username"
+                            required
+                        />
+                        <small class="form-text text-muted">
+                            <?=_e("Ce champ est requis")?>
+                        </small>
+                    </div>
+                </div>
+                <div class="col-lg-6">
                     <div class="form-group">
                         <!-- password -->
                         <input 
                             type="password" 
                             class="form-control" 
-                            placeholder="<?=_e("Mot de passe")?>" 
+                            placeholder="<?=_e("Mot de passe*")?>" 
                             name="password" id="password"
+                            required
                         />
+                        <small class="form-text text-muted">
+                            <?=_e("Ce champ est requis")?>
+                        </small>
                     </div>
                 </div>
             </div>
             <!-- /row -->
-            <div><input type="submit" class="btn_1" value="Submit" id="submit-register"></div>
+            <div>
+                <input type="submit" class="btn_1" value="Submit" id="submit-register"
+            ></div>
         </form>
          <!-- Form END -->
     </div>

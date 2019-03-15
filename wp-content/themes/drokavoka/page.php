@@ -19,8 +19,10 @@ get_header();
 		<main id="main" class="site-main">
 			<?php
 				//Registration Page 
-				if(is_page(26)):
+				if(is_page("signup")):
 					get_template_part("template-parts/page/content","signup");
+				elseif(is_page("login")):
+					get_template_part("template-parts/page/content","login");
 				endif;
 				//Registration Page END
 			?>

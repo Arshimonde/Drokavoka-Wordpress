@@ -61,3 +61,11 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
+
+/**
+ * Implements User Management Script .
+ *
+ */
+
+require get_template_directory() . '/inc/user-managment.php';
+

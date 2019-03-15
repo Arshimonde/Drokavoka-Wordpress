@@ -18,7 +18,7 @@
             'menu_name' => __( 'Spécialités' ),
         );    
         
-        register_taxonomy('lawyer_specialte','user', array(
+        register_taxonomy('lawyer_specialte','post', array(
             'hierarchical' => true,
             'labels' => $labels,
             'public' => true,
@@ -30,18 +30,6 @@
         
     }
     
-    add_action( 'admin_menu', 'add_avocat_specialite_admin_page' );
-
-    function add_avocat_specialite_admin_page() {
-        $taxonomy = get_taxonomy( "lawyer_specialte" );
-        add_users_page(
-            esc_attr( $taxonomy->labels->menu_name ),//page title
-            esc_attr( $taxonomy->labels->menu_name ),//menu title
-            $taxonomy->cap->manage_terms,//capability
-            'edit-tags.php?taxonomy=' . $taxonomy->name//menu slug
-        );
-    }
-
     function add_lawyer_specialte_columns($columns){
         $columns['image'] = 'Image';
         
