@@ -9,11 +9,11 @@
                     <div class="form-group">
                         <!-- Gender -->
                         <div class="custom-control custom-radio custom-control-inline">
-                            <input class="custom-control-input" type="radio" name="gender" id="mr" value="mr" checked="">
+                            <input class="custom-control-input" type="radio" name="gender" id="mr" value="man" checked="">
                             <label class="custom-control-label mt-1" for="mr">Monsieur</label>
                         </div>
                         <div class="custom-control custom-radio custom-control-inline">
-                            <input class="custom-control-input" type="radio" name="gender" id="mme" value="mm">
+                            <input class="custom-control-input" type="radio" name="gender" id="mme" value="women">
                             <label class="custom-control-label mt-1" for="mme">Madame</label>
                         </div>
                     </div>

@@ -23,6 +23,8 @@ get_header();
 					get_template_part("template-parts/page/content","signup");
 				elseif(is_page("login")):
 					get_template_part("template-parts/page/content","login");
+				elseif(is_page("dashboard")):
+					get_template_part("template-parts/dashboard/content","dashboard");
 				endif;
 				//Registration Page END
 			?>

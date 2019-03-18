@@ -72,8 +72,24 @@ if ( ! function_exists( 'drokavoka_setup' ) ) :
 			'flex-width'  => true,
 			'flex-height' => true,
 		) );
+
+		// HIDE ADMIN BAR 
+		if (!current_user_can('administrator') && !is_admin()) {
+			show_admin_bar(false);
+		}
 	}
 endif;
 add_action( 'after_setup_theme', 'drokavoka_setup' );
 
+//Redirects
+add_action( 'template_redirect', 'redirect_to_specific_page' );
+
+function redirect_to_specific_page() {
+	if ( is_page('dashboard') && !is_user_logged_in() ) {
+
+		wp_redirect( home_url().'/login', 301 ); 
+
+		exit;
+    }
+}
 ?>

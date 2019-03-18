@@ -27,7 +27,7 @@ jQuery(function($){
                             confirmButtonText: 'OK!'
                         }).then((result) => {
                             if(result.value){
-                                window.location.href="/";
+                                window.location.href="/login";
                             }
                         });
                     }else{
@@ -41,9 +41,6 @@ jQuery(function($){
                 }
             });
             return false;
-        });
-        $('#submit-register').click(function() {
-            $('#register_doctor').submit();
         });
         // Lawyer REGISTER AJAX END
 

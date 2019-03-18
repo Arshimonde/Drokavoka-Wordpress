@@ -20,7 +20,15 @@
 	<?php wp_head(); ?>
 </head>
 
-<body <?php body_class(); ?>>
+<?php
+	$id="";
+	$classes = array();
+	if(is_page("dashboard")):
+		$id="page-top";
+		$classes[] = "fixed-nav sticky-footer";
+	endif;
+?>
+<body id="<?=$id?>" <?php body_class($classes); ?>>
 	<!-- screen readers skip link -->
 	<a class="skip-link screen-reader-text sr-only" href="#content">
 		<?php esc_html_e( 'Skip to content', 'drokavoka' ); ?>
@@ -31,6 +39,8 @@
 	<div class="layer"></div><!-- Mobile menu overlay mask end-->
 	<?php
 		get_template_part( 'template-parts/header/preloader');
+		//don't show the header if page == dashboard
+		if(!is_page("dashboard")):
 	?>
 	<header class="header_sticky">
 		<div class="container">
@@ -42,6 +52,9 @@
 			</div>
 		</div>
 	</header>
+	<?php
+		endif;
+	?>
 	<!-- header end -->
 
 	<!-- content -->

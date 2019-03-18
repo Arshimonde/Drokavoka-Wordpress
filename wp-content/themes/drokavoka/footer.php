@@ -13,12 +13,14 @@
 
 	</div><!-- #content -->
 
+	<?php if(!is_page("dashboard")):?>
+
 	<footer id="colophon" class="site-footer">
 		<div class="site-info">
-			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'drokavoka' ) ); ?>">
+			<a href="<?= home_url() ?>">
 				<?php
 				/* translators: %s: CMS name, i.e. WordPress. */
-				printf( esc_html__( 'Proudly powered by %s', 'drokavoka' ), 'WordPress' );
+				printf( esc_html__( 'Proudly powered by %s', 'drokavoka' ), 'Redbull' );
 				?>
 			</a>
 			<span class="sep"> | </span>
@@ -28,6 +30,8 @@
 				?>
 		</div><!-- .site-info -->
 	</footer><!-- #colophon -->
+
+	<?php endif;?>
 
 <?php wp_footer(); ?>
 

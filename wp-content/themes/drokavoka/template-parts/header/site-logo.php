@@ -1,6 +1,6 @@
 <div class="col-lg-3 col-6">
     <div id="logo">
-        <a href="index.html" class="d-flex align-items-center" title="drokavoka">
+        <a href="<?=home_url()?>" class="d-flex align-items-center" title="drokavoka">
             <?php 
                 $logo_url = get_template_directory_uri()."/assets/images/logo.png";
             ?>

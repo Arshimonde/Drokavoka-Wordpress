@@ -71,12 +71,17 @@
 
         if(isset($data["email"]) && isset($data["password"])
             && !empty($data["email"])  && !empty($data["password"])):
-            
-            $user = wp_authenticate($data["email"], $data["password"]);
+            $creds = array(
+                'user_login'    => $data["email"],
+                'user_password' => $data["password"],
+                'remember'      => true
+            );
+         
+            $user = wp_signon( $creds, false );
 
             if(! is_wp_error($user)):
                 //HERE TO CHECK IF USER IS LAWYER OR CLIENT TO REDIRECT
-                wp_send_json_success(array("redirect"=>home_url()));
+                wp_send_json_success(array("redirect"=>home_url("dashboard")));
             else:
                 wp_send_json_error(array(
                     "message" => $user->get_error_message() 
