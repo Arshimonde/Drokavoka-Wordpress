@@ -7,7 +7,6 @@
  * @package Drokavoka
  */
 
-
 /**
  * Implements Custom Taxonomies .
  *

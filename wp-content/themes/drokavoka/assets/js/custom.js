@@ -17,6 +17,7 @@ jQuery(function($){
                     action:"register_lawyer",
                     nonce: ajax_object.nonce,
                     data:$(this).serialize(),
+                    is_update: false,
                 },
                 success:function(response){
                     if(response.success === true){
@@ -75,5 +76,60 @@ jQuery(function($){
             return false;
         });
         // USER LOGIN AJAX END
+
+        // USER UPDATE PROFILE
+        $('#lawyer-update-profile').submit(function(){
+            $('#submit-update-profile')
+            .after('<i class="icon-spin4 animate-spin loader"></i>')
+            .attr('disabled','disabled');
+
+            //get treatments
+            let treatment = [];
+            $(".treatment").each(function(){
+                let title = $(this).find(".tarif-title").val();
+                let price = $(this).find(".tarif-price").val();
+                treatment.push({
+                    title:title,
+                    price:price
+                });
+            });
+            
+            //AJAX
+            $.ajax({
+                url: ajax_object.ajax_url,
+                type: 'POST',
+                data:{
+                    action:"register_lawyer",
+                    nonce: ajax_object.nonce,
+                    data: $(this).serialize(),
+                    tarifs:treatment,
+                    is_update: true,
+                },
+                success: function (response) {
+                    if(response.success === true){
+                        //Redirect user to his appropriate page
+                        swal({
+                            type: "success",
+                            text:response.data.message,
+                            confirmButtonText: 'OK!'
+                        }).then((result) => {
+                            if(result.value){
+                                location.reload();
+                            }
+                        });
+                    }else{
+                        swal({
+                            type: "warning",
+                            html:response.data.message,
+                        });
+                        $('#submit-update-profile').next(".icon-spin4").remove();
+                        $('#submit-update-profile').prop("disabled", false); 
+                    }
+                }
+            });
+
+            return false;
+        });
+        // USER UPDATE PROFILE END
     });
 });
