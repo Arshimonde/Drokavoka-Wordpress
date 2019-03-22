@@ -521,7 +521,9 @@ a:hover, a:focus {
 }
 
 a.btn_1,
-.btn_1 {
+.btn_1,
+.wpua-edit button,
+.wpua-edit input[type='submit'] {
   border: none;
   color: #fff;
   background: #007bff;
@@ -544,7 +546,9 @@ a.btn_1,
   font-weight: 500;
 }
 a.btn_1.gray,
-.btn_1.gray {
+.btn_1.gray ,
+.wpua-edit button,
+.wpua-edit input[type='submit']{
   background: #e9ecef;
   color: #868e96;
 }
@@ -1094,3 +1098,9 @@ select.form-control:not([size]):not([multiple]) {
 .sbOptions .sbSub {
   padding-left: 17px;
 }
+
+/* UPLOAD IMAGE DASHBOARD */
+#wpua-edit-attachment-existing{
+  display: none;
+}
+/* UPLOAD IMAGE DASHBOARD */

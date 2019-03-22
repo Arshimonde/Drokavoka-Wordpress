@@ -56,8 +56,8 @@
                 update_user_meta($user_id, "state", $data["state"]);
             }
                 // mobile phone
-            if(isset($data["mobile_phone"]) && !empty($data["mobile_phone"])){
-                update_user_meta($user_id, "phone", $data["mobile_phone"]);
+            if(isset($data["phone"]) && !empty($data["phone"])){
+                update_user_meta($user_id, "phone", $data["phone"]);
             }
                 // fix
             if(isset($data["fix"]) && !empty($data["fix"])){
@@ -80,20 +80,23 @@
             }
                 // cv
             if(isset($data["cv"]) && !empty($data["cv"])){
-                update_user_meta($user_id, "cv", $data["cv"]);
+               update_field("cv", wp_kses_post($data["cv"]),"user_".$user_id);
             }
+            // SOCIAL MEDIA
+            $social_media = array();
                 // twitter
             if(isset($data["twitter"]) && !empty($data["twitter"])){
-                update_user_meta($user_id, "social_media_twitter", $data["social_media_twitter"]);
+                $social_media["twitter"] = $data["twitter"];
             }
                 // facebook
             if(isset($data["facebook"]) && !empty($data["facebook"])){
-                update_user_meta($user_id, "social_media_facebook", $data["social_media_facebook"]);
+                $social_media["facebook"] = $data["facebook"];
             }
                 // twitter
             if(isset($data["linkedin"]) && !empty($data["linkedin"])){
-                update_user_meta($user_id, "social_media_linkedin", $data["social_media_linkedin"]);
+                $social_media["linkedin"] = $data["linkedin"];
             }
+            update_field("social_media",$social_media,"user_".$user_id);
                 // tarifs
             if(isset($tarifs)){
                update_field("treatments",$tarifs,"user_".$user_id);
@@ -132,9 +135,9 @@
             );
          
             $user = wp_signon( $creds, false );
-
             if(! is_wp_error($user)):
                 //HERE TO CHECK IF USER IS LAWYER OR CLIENT TO REDIRECT
+                wp_set_current_user( $user->ID );
                 wp_send_json_success(array("redirect"=>home_url("dashboard")));
             else:
                 wp_send_json_error(array(
@@ -142,7 +145,9 @@
                 ));
             endif;
         else:
-            wp_send_json_error();
+            wp_send_json_error(array(
+                "message" => __("Adresse Messagerie ou Mot de passe vide"),
+            ));
         endif;
 
         die();

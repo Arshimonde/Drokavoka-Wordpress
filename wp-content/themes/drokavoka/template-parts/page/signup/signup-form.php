@@ -138,7 +138,7 @@
                             type="text" 
                             class="form-control" 
                             placeholder="<?=_e("GSM")?>" 
-                            name="mobile_phone" id="mobile_phone"
+                            name="phone" id="phone"
                         >
                     </div>
                 </div>

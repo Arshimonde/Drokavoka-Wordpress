@@ -9,7 +9,6 @@ jQuery(function($){
             $('#submit-register')
             .after('<i class="icon-spin4 animate-spin loader"></i>')
             .attr('disabled','disabled');
-
             $.ajax({
                 type:"POST",
                 url:ajax_object.ajax_url,
@@ -83,6 +82,7 @@ jQuery(function($){
             .after('<i class="icon-spin4 animate-spin loader"></i>')
             .attr('disabled','disabled');
 
+            tinyMCE.triggerSave();
             //get treatments
             let treatment = [];
             $(".treatment").each(function(){
@@ -131,5 +131,6 @@ jQuery(function($){
             return false;
         });
         // USER UPDATE PROFILE END
+        
     });
 });

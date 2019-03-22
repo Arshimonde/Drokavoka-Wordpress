@@ -90,6 +90,6 @@ function redirect_to_specific_page() {
 		wp_redirect( home_url().'/login', 301 ); 
 
 		exit;
-    }
+	}
 }
 ?>

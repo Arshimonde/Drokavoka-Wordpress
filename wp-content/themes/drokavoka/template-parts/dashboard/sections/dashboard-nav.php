@@ -1,3 +1,6 @@
+<div id="preloader">
+    <div data-loader="circle-side"></div>
+</div>
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-default fixed-top" id="mainNav">
     <!-- logo -->

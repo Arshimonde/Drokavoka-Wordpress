@@ -1,7 +1,8 @@
 <!-- VARIABLES -->
 <?php
     $user_id = get_current_user_id();
-    $img_url = get_avatar_url($user_id,array("size"=>150));
+    $img_id = get_user_meta($user_id,"wp_user_avatar",true);
+    $user_avatar_url = wp_get_attachment_image_url($img_id);
     $user_info = get_userdata($user_id);
 
     $first_name = get_user_meta($user_id, "first_name",true);
@@ -14,7 +15,7 @@
     $city = get_user_meta($user_id, "city",true);
     $user_specialties = get_user_meta($user_id, "specialties",true);
     $is_free_consultation = get_user_meta($user_id, "free_consultation",true)[0];
-    $cv = get_user_meta($user_id, "cv",true);
+    $cv = get_field("cv","user_".$user_id);
     $phone = get_user_meta($user_id, "phone",true);
     $fax = get_user_meta($user_id, "fax",true);
     $fix = get_user_meta($user_id, "fix",true);
@@ -23,8 +24,23 @@
     $linkedin = get_user_meta($user_id, "social_media_linkedin",true);
 ?>
 <!-- VARIABLES END-->
+<input type="hidden" value="<?=$user_id?>" name="user_id">
+<div class="box_general padding_bottom">
+    <div class="header_box version_2">
+        <h2>
+            <i class="fa fa-file"></i>
+            <?=_e("Photo de profil")?>
+        </h2>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-12">
+            <!-- img here -->
+            <?php echo do_shortcode("[avatar_upload]");?>
+        </div>
+    </div>
+    <!-- /row-->
+</div>
 <form id="lawyer-update-profile" enctype="multipart/form-data">
-    <input type="hidden" value="<?=$user_id?>" name="user_id">
     <div class="box_general padding_bottom">
         <div class="header_box version_2">
             <h2>
@@ -32,19 +48,6 @@
                 <?=_e("Informations de base")?>
             </h2>
         </div>
-        <div class="row mb-3">
-            <div class="col-md-12">
-                <!-- img here -->
-                <img src="<?=$img_url?>" alt="<?=$first_name." ".$last_name?>">
-                <div class="custom-file my-custom-file mt-2">
-                    <input type="file" class="custom-file-input d-none" id="customFile">
-                    <label class="btn_1 gray rounded-0" for="customFile">
-                        <?=_e("Choisir une image")?>
-                    </label>
-                </div>
-            </div>
-        </div>
-        <!-- /row-->
         <div class="row">
             <div class="col-lg-12">
                 <div class="form-group">
@@ -281,15 +284,15 @@
             <div class="col-md-12">
                 <h6><?=_e("Traitements")?></h6>
                 <table id="pricing-list-container" style="width:100%;">
-                    <tr class="pricing-list-item">
-                        <!-- treatments -->
-                        <?php
-                            if( have_rows('treatments',"user_".$user_id) ):
+                    <!-- treatments -->
+                    <?php
+                        if( have_rows('treatments',"user_".$user_id) ):
 
-                                // loop through the rows of data
-                            while ( have_rows('treatments',"user_".$user_id) ) : 
-                                    the_row();
-                        ?>
+                            // loop through the rows of data
+                        while ( have_rows('treatments',"user_".$user_id) ) : 
+                                the_row();
+                    ?>
+                    <tr class="pricing-list-item">
                         <td class="treatment">
                             <div class="row">
                                 <div class="col-md-6">
@@ -300,10 +303,11 @@
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <div class="form-group">
+                                    <div class="form-group d-flex align-items-center">
                                         <input type="text" class="form-control tarif-price"  placeholder="<?=_e("Prix (MAD)")?>"
                                         value="<?=the_sub_field('price')?>"
                                         >
+                                        <small class="badge badge-secondary rounded-circle p-2 ml-1">DH</small>
                                     </div>
                                 </div>
                                 <div class="col-md-2">
@@ -313,12 +317,12 @@
                                 </div>
                             </div>
                         </td>
-                        <?php
-                                endwhile;
-                            endif;
-                        ?>
-                        <!-- treatments end-->
                     </tr>
+                    <?php
+                            endwhile;
+                        endif;
+                    ?>
+                    <!-- treatments end-->
                 </table>
                 <a href="#0" class="btn_1 gray add-pricing-list-item"><i class="fa fa-fw fa-plus-circle"></i><?=_e("Ajouter nouveau traitement")?></a>
                 </div>
