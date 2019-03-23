@@ -4,7 +4,6 @@
     $img_id = get_user_meta($user_id,"wp_user_avatar",true);
     $user_avatar_url = wp_get_attachment_image_url($img_id);
     $user_info = get_userdata($user_id);
-
     $first_name = get_user_meta($user_id, "first_name",true);
     $last_name = get_user_meta($user_id, "last_name",true);
     $email = $user_info->user_email;
@@ -24,7 +23,8 @@
     $linkedin = get_user_meta($user_id, "social_media_linkedin",true);
 ?>
 <!-- VARIABLES END-->
-<input type="hidden" value="<?=$user_id?>" name="user_id">
+
+<!-- USER AVATAR -->
 <div class="box_general padding_bottom">
     <div class="header_box version_2">
         <h2>
@@ -40,7 +40,9 @@
     </div>
     <!-- /row-->
 </div>
-<form id="lawyer-update-profile" enctype="multipart/form-data">
+<!-- OTHER FIELDS -->
+<form id="lawyer-update-profile">
+    <input type="hidden" value="<?=$user_id?>" name="user_id">
     <div class="box_general padding_bottom">
         <div class="header_box version_2">
             <h2>
@@ -253,6 +255,9 @@
             <div class="col-md-12 mt-3">
                 <div class="form-group">
                     <label><?=_e("Déscription")?></label>
+                    <small class="text-muted d-block">
+                        <?=__("Conférences, écoles, livres écrits, associations, entreprises créées et récompenses")?>
+                    </small>
                     <?php
                         $content = $cv;
                         $editor_id = 'cv';
@@ -320,6 +325,35 @@
                     </tr>
                     <?php
                             endwhile;
+                        else:
+                    ?>
+                         <tr class="pricing-list-item">
+                        <td class="treatment">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control tarif-title" placeholder="<?=_e("Titre (Divorce,Héritage,Conseil Business...)")?>"
+                                        value="<?=the_sub_field('title')?>"
+                                        >
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group d-flex align-items-center">
+                                        <input type="text" class="form-control tarif-price"  placeholder="<?=_e("Prix (MAD)")?>"
+                                        value="<?=the_sub_field('price')?>"
+                                        >
+                                        <small class="badge badge-secondary rounded-circle p-2 ml-1">DH</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <a class="delete" href="#"><i class="fa fa-fw fa-remove"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <?php        
                         endif;
                     ?>
                     <!-- treatments end-->

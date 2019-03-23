@@ -25,6 +25,8 @@ get_header();
 					get_template_part("template-parts/page/content","login");
 				elseif(is_page("dashboard")):
 					get_template_part("template-parts/dashboard/content","dashboard");
+				elseif(is_page("listing-lawyers")):
+					get_template_part("template-parts/page/content","listing-lawyers");
 				endif;
 				//Registration Page END
 			?>

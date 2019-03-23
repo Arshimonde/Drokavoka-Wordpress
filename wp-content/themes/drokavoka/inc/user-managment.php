@@ -138,7 +138,8 @@
             if(! is_wp_error($user)):
                 //HERE TO CHECK IF USER IS LAWYER OR CLIENT TO REDIRECT
                 wp_set_current_user( $user->ID );
-                wp_send_json_success(array("redirect"=>home_url("dashboard")));
+                $redirect_url  = home_url("dashboard?section=lawyer-profil");
+                wp_send_json_success(array("redirect"=>$redirect_url));
             else:
                 wp_send_json_error(array(
                     "message" => $user->get_error_message() 
@@ -153,4 +154,20 @@
         die();
     }
     // Login USER END
+
+    // LOGOUT USER
+    // Login USER
+    add_action("wp_ajax_user_logout","user_logout");
+    add_action("wp_ajax_nopriv_user_logout","user_logout");
+    function user_logout(){
+        check_ajax_referer('ajax_nounce', 'nonce');
+
+        wp_logout();
+        wp_set_current_user(0);
+        wp_send_json_success(array(
+            "redirect" => home_url()
+        ));
+    }
+    // LOGOUT USER END
+
 ?>

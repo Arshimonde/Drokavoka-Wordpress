@@ -94,7 +94,7 @@ jQuery(function($){
                 });
             });
             
-            //AJAX
+            //USER UPDATE PROFILE
             $.ajax({
                 url: ajax_object.ajax_url,
                 type: 'POST',
@@ -131,6 +131,25 @@ jQuery(function($){
             return false;
         });
         // USER UPDATE PROFILE END
+
+        // LOGOUT FROM DASHBOARD
+        $("#dashboard-logout").click(function() {
+            $.ajax({
+                url: ajax_object.ajax_url,
+                type: 'POST',
+                data:{
+                    action:"user_logout",
+                    nonce: ajax_object.nonce,
+                },
+                success: function (response) {
+                    if(response.success === true){
+                        //Redirect user to his appropriate page
+                        window.location.href = response.data.redirect;
+                    }
+                }
+            });
+        });
+        // LOGOUT FROM DASHBOARD END
         
     });
 });

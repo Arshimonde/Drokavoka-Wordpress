@@ -2,7 +2,9 @@
 /* Your custom styles below */
 /*============================================================================================*/
 
-
+.overflow-hidden{
+    overflow: hidden!important;
+}
 /* SELECT  2 */
 .bootstrap-select .btn-light{
     background-color: transparent;
@@ -11,5 +13,39 @@
     color: #495057;
 }
 /* SELECT  2 END*/
+
+/* WORDPRESS PAGINATION */
+.page-numbers{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding-left: 0;
+    list-style: none;
+    border-radius: .25rem;
+}
+.page-numbers .page-numbers{
+    padding: .25rem .5rem;
+    font-size: .875rem;
+    line-height: 1.5;
+    color: #e74e84;
+    border: 1px solid #e1e8ed;
+    position: relative;
+    display: block;
+    margin-left: -1px;
+    background-color: #fff;
+    border-radius: 0;
+}
+.page-numbers .page-numbers.current{
+    background-color: #3f4079;
+    border-color: #3f4079;
+    z-index: 1;
+    color: #fff;
+}
+.page-numbers .page-numbers:not(:disabled):not(.disabled) {
+    cursor: pointer;
+}
+
+
+/* WORDPRESS PAGINATION END */
 
 

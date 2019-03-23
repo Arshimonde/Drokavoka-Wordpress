@@ -19,6 +19,7 @@ function drokavoka_styles() {
 		wp_enqueue_style("style-template","$css_url/style.css");
 		wp_enqueue_style("menu","$css_url/menu.css");
 		wp_enqueue_style("vendors","$css_url/vendors.css");
+		wp_enqueue_style("date-picker","$css_url/date_picker.css");
 		wp_enqueue_style("custom","$css_url/custom.css");
 	endif;
 }
