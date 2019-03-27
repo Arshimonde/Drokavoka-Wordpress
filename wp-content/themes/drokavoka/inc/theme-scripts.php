@@ -26,10 +26,7 @@ function drokavoka_scripts() {
 		wp_enqueue_script( 'admin', $js_url. '/admin.js');
 	endif;
 
-	if(is_page("listing-lawyers")):
-		wp_enqueue_script( 'map-api-js','https://maps.googleapis.com/maps/api/js');wp_enqueue_script( 'map-listing', $js_url. '/map_listing.js');
-		wp_enqueue_script( 'info-box', $js_url. '/infobox.js');
-	endif;
+	wp_enqueue_script( 'leaflet-js',$js_url.'/leaflet.js');
 	wp_enqueue_script( 'custom', $js_url. '/custom.js');
 	wp_enqueue_script( 'dropzone-js', $vendor_url. '/dropzone.min.js');
 	

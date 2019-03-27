@@ -82,6 +82,33 @@
           $(this).parent().parent().parent().remove();
         });
       }
-	
+      
+      // LAWYER MAP FIELD
+      let lat = $("#latitude");
+      let lon = $("#longitude");
+
+      let lat_value = "34.02061708722915";
+      let lon_value = "-6.834633350372315";
+      
+      if(lat.val() !== "" && lon.val() !== ""){
+        lat_value = lat.val();
+        lon_value = lon.val();
+      }
+      
+      var map = L.map('lawyer_map').setView(new L.LatLng(lat_value, lon_value), 15);
+
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      }).addTo(map);
+
+      map.panTo(new L.LatLng(lat_value, lon_value));
+
+      L.marker([lat_value, lon_value],{ draggable: true })
+      .on("dragend",function (e) {
+        lat.val( this.getLatLng().lat);
+        lon.val(this.getLatLng().lng);
+      })
+      .addTo(map);
+
   });
 })(jQuery); // End of use strict

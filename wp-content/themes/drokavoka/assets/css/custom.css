@@ -49,3 +49,8 @@
 /* WORDPRESS PAGINATION END */
 
 
+/* MAP */
+#leaflet-map-1 { 
+    min-height: 488px; 
+}
+/* MAP END*/

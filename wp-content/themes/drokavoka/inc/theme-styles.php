@@ -11,7 +11,7 @@ function drokavoka_styles() {
 	wp_enqueue_style("font-awesome","$vendor_url/font-awesome/css/font-awesome.min.css");
 	wp_enqueue_style("datatable","$vendor_url/datatables/dataTables.bootstrap4.css");
 	wp_enqueue_style("dropzone","$vendor_url/dropzone.css");
-
+	wp_enqueue_style("leaflet-css","$css_url/leaflet.css");
 	//CUSTOM CSS
 	if(is_page("dashboard")):
 		wp_enqueue_style("admin","$css_url/admin.css");

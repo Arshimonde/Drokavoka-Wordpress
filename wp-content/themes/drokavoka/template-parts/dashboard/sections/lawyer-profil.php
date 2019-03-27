@@ -205,6 +205,34 @@
             </div>
         </div>
         <!-- /row-->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label><?=_e("Latitude")?></label>
+                    <input 
+                        type="text" class="form-control" id="latitude" name="latitude"
+                        placeholder="<?=_e("Votre Latitude")?>"
+                        value=""
+                    >
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label><?=_e("Longitude")?></label>
+                    <input 
+                        type="text" class="form-control" id="longitude" name="longitude"
+                        placeholder="<?=_e("Votre longitude")?>"
+                        value=""
+                    >
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <label><?=_e("Glisser le markeur à votre position")?></label>
+                <div id="lawyer_map"></div>
+            </div>
+        </div>
     </div>
     <!-- /box_general-->
     
