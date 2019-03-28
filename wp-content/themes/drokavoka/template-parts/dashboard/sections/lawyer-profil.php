@@ -10,6 +10,8 @@
     $gender = get_user_meta($user_id, "gender",true);
     $address = get_user_meta($user_id, "address",true);
     $postal_code = get_user_meta($user_id, "postal_code",true);
+    $latitude = get_user_meta($user_id, "latitude",true);
+    $longitude = get_user_meta($user_id, "longitude",true);
     $state = get_user_meta($user_id, "state",true);
     $city = get_user_meta($user_id, "city",true);
     $user_specialties = get_user_meta($user_id, "specialties",true);
@@ -212,7 +214,7 @@
                     <input 
                         type="text" class="form-control" id="latitude" name="latitude"
                         placeholder="<?=_e("Votre Latitude")?>"
-                        value=""
+                        value="<?=$latitude?>"
                     >
                 </div>
             </div>
@@ -223,7 +225,7 @@
                     <input 
                         type="text" class="form-control" id="longitude" name="longitude"
                         placeholder="<?=_e("Votre longitude")?>"
-                        value=""
+                        value="<?=$longitude?>"
                     >
                 </div>
             </div>

@@ -55,6 +55,14 @@
             if(isset($data["state"]) && !empty($data["state"])){
                 update_user_meta($user_id, "state", $data["state"]);
             }
+                // latitude
+            if(isset($data["latitude"]) && !empty($data["latitude"])){
+                update_user_meta($user_id, "latitude", $data["latitude"]);
+            }
+                // longitude
+            if(isset($data["longitude"]) && !empty($data["longitude"])){
+                update_user_meta($user_id, "longitude", $data["longitude"]);
+            }
                 // mobile phone
             if(isset($data["phone"]) && !empty($data["phone"])){
                 update_user_meta($user_id, "phone", $data["phone"]);

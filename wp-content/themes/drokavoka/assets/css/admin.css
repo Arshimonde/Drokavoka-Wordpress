@@ -1107,5 +1107,5 @@ select.form-control:not([size]):not([multiple]) {
 /* UPLOAD IMAGE DASHBOARD */
 
 #lawyer_map{ 
-  min-height: 488px; 
+  min-height: 350px; 
 }

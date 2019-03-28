@@ -100,7 +100,7 @@
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
           attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       }).addTo(map);
-
+ 
       map.panTo(new L.LatLng(lat_value, lon_value));
 
       L.marker([lat_value, lon_value],{ draggable: true })

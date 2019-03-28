@@ -40,11 +40,19 @@
                         $first_name = $lawyer_info->first_name;
                         $last_name = $lawyer_info->last_name;
                         $specialties = get_user_meta( $user_id,"specialties",true);
-                        $user_address = get_user_meta( $user_id,"address",true);
+
+                        $lat = get_user_meta( $user_id,"latitude",true);
+                        $lon = get_user_meta( $user_id,"longitude",true);
+
                         $img_id = get_user_meta($user_id,"wp_user_avatar",true);
                         $user_avatar_url = wp_get_attachment_image_url($img_id);
-                        if(!empty($user_address)):
-                            array_push($addresses,$user_address);
+
+                        if(!empty($lat) && !empty($lon)):
+                            array_push($addresses,array(
+                                "lat" => $lat,
+                                "lon" => $lon,
+                                'lawyer_name'=>__("Maitre"). " " .$last_name." ". $first_name 
+                            ));
                         endif;
                         // view
                         include "listing-lawyers/lawyers-single.php";  
