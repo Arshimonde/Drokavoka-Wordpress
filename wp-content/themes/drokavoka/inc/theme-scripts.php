@@ -29,7 +29,7 @@ function drokavoka_scripts() {
 	wp_enqueue_script( 'leaflet-js',$js_url.'/leaflet.js');
 	wp_enqueue_script( 'custom', $js_url. '/custom.js');
 	wp_enqueue_script( 'dropzone-js', $vendor_url. '/dropzone.min.js');
-	
+	wp_enqueue_script( 'date-picker', $js_url. '/bootstrap-datepicker.js');
     //Comments  JS
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );

@@ -81,9 +81,10 @@
 		// Carousel
 		$('#reccomended').owlCarousel({
 			center: true,
-			items: 2,
+			items: 1,
 			loop: true,
 			margin: 10,
+			nav:true,
 			responsive: {
 				0: {
 					items: 1

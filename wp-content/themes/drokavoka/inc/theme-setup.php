@@ -77,6 +77,7 @@ if ( ! function_exists( 'drokavoka_setup' ) ) :
 		if (!current_user_can('administrator') && !is_admin()) {
 			show_admin_bar(false);
 		}
+
 	}
 endif;
 add_action( 'after_setup_theme', 'drokavoka_setup' );
@@ -92,4 +93,5 @@ function redirect_to_specific_page() {
 		exit;
 	}
 }
+
 ?>

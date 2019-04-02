@@ -1,6 +1,6 @@
 <div id="map_listing" class="normal_list">
 <?php
-    $shortcode ="[leaflet-map fitbounds scrollwheel zoom=12]\n"; 
+    $shortcode ="[leaflet-map fitbounds scrollwheel zoom=18]\n"; 
 
     if(isset($addresses) && !empty($addresses)):
         foreach($addresses as $address):

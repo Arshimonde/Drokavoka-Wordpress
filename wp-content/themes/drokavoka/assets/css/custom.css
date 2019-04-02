@@ -5,6 +5,12 @@
 .overflow-hidden{
     overflow: hidden!important;
 }
+h3 a{
+    color:#333333;
+}
+h3 a:hover{
+    color:#e74e84;;
+}
 /* SELECT  2 */
 .bootstrap-select .btn-light{
     background-color: transparent;
