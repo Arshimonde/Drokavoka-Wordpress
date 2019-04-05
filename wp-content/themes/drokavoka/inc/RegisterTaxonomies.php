@@ -44,5 +44,32 @@
     add_filter('manage_lawyer_specialte_custom_column', 'add_lawyer_specialte_content');
     // Register Specialties Taxonomy END
 
-
+    // REGISTER CITY TAXONOMY 
+    add_action( 'init', 'register_city_taxonomy');
+    function register_city_taxonomy() {
+        $labels = array(
+            'name' => _x( 'Villes', 'taxonomy general name' ),
+            'singular_name' => _x( 'Ville', 'taxonomy singular name' ),
+            'search_items' =>  __( 'Rechercher la ville' ),
+            'all_items' => __( 'Tout Les Villes' ),
+            'edit_item' => __( 'Modifier La ville' ), 
+            'update_item' => __( 'Mettre à jour La ville' ),
+            'add_new_item' => __( 'Ajouter une ville' ),
+            'new_item_name' => __( 'Nouveau ville' ),
+            'menu_name' => __( 'Villes' ),
+        );    
+        
+        register_taxonomy('cities','post', array(
+            'hierarchical' => false,
+            'labels' => $labels,
+            'public' => true,
+            'show_ui' => true,
+            'show_admin_column' => true,
+            'query_var' => true,
+            'rewrite' => array( 'slug' => 'cities' ),
+        ));
+        
+    }
+    	
+    // REGISTER CITY TAXONOMY END 
 ?>

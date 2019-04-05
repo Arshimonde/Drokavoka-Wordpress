@@ -42,7 +42,7 @@
         </div>
     </div>
     <!-- /row -->
-    <p class="text-center"><a href="list.html" class="btn_1 medium"><?=_e("Trouver un avocat")?></a></p>
+    <p class="text-center"><a href="/listing-lawyers" class="btn_1 medium"><?=_e("Trouver un avocat")?></a></p>
 
 </div>
 <!-- /container -->
