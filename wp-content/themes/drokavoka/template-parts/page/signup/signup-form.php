@@ -84,14 +84,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <!-- ville -->
-                        <input 
-                            type="text" 
-                            class="form-control" 
-                            placeholder="<?=_e("Ville*")?>" 
-                            name="city" 
-                            id="city"
-                            required
-                        >
+                        <?php render_cities_select(); ?>
                         <small class="form-text text-muted">
                             <?=_e("Ce champ est requis")?>
                         </small>

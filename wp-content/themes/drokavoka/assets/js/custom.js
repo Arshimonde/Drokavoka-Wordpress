@@ -1,7 +1,7 @@
 jQuery(function($){
     $(document).ready(function(){
         //Select Picker
-        $(".selectpicker").selectpicker();
+        // $(".selectpicker").selectpicker();
         //Select Picker END
 
         // Lawyer REGISTER AJAX
@@ -149,32 +149,61 @@ jQuery(function($){
                 }
             });
         });
-        // LOGOUT FROM DASHBOARD END
-     
+
+        // LOGOUT FROM DASHBOARD END    
+        
+        // AUTOCOMPLETE
+        $('.typeahead-lawyers').typeahead({
+            hint: true,
+            highlight: true,
+          },
+          {
+            source : function (query, syncResults) {
+                var result = findMatches(query,ajax_object.lawyers_names);
+                syncResults(result);
+            },
+            limit: 8
+        });
+        $('.typeahead-list-lawyers').typeahead({
+            hint: true,
+            highlight: true,
+          },
+          {
+            source : function (query, syncResults) {
+                var result = findMatches(query,ajax_object.listing_search_data);
+                syncResults(result);
+            },
+            limit: 8
+        });
+        // AUTOCOMPLETE END
     });
     
-    // AUTOCOMPLETE
-    $('.typeahead').typeahead({
-        hint: true,
-        highlight: true,
-        minLength: 1
-      },
-      {
-        source: function(query, process) {
-           return process( 
-                ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
-                'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii',
-                'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana',
-                'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota',
-                'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',
-                'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota',
-                'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island',
-                'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
-                'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
-                ] 
-            ); 
-        }
-    });
-    // AUTOCOMPLETE END
+
+    function findMatches(q,data) {
+        var matches, substringRegex;
+    
+        // an array that will be populated with substring matches
+        matches = [];
+    
+        // regex used to determine if a string contains the substring `q`
+        substringRegex = new RegExp(q, 'i');
+    
+        // iterate through the pool of strings and for any string that
+        // contains the substring `q`, add it to the `matches` array
+        $.each(data, function(i, str) {
+            if (substringRegex.test(str)) {
+                matches.push( decodeHtml(str) );
+            }
+        });
+        
+        return matches;
+    }
+
+    function decodeHtml(html) {
+        var txt = document.createElement("textarea");
+        txt.innerHTML = html;
+        return txt.value;
+    }
+
 
 });

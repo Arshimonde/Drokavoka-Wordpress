@@ -11,7 +11,10 @@
         $offset= ($paged-1) * $no;
     }
 
-    $meta_query = array();
+    $meta_query = array(
+        'relation' => 'AND'
+    );
+    // Meta from home page link
     if(isset($_GET["taxonomy"]) && !empty($_GET["taxonomy"])){
         $key = $_GET["taxonomy"] == "cities" ? "city" : 'specialties';
         array_push($meta_query,array(
@@ -20,7 +23,75 @@
             'compare' => 'LIKE',
         ));
     }
+    // SEARCH FORM ARGS
+    $specialty = $_POST["lawyer-specialte"];
+    $city = $_POST["city"];
+    $full_name = $_POST["lawyer-name"];
+    $listing_search_data = $_POST["list-lawyer-search"]; 
 
+    if (isset($listing_search_data) && !empty($listing_search_data)) {
+
+        $city_term = get_term_by('name', $listing_search_data, 'cities');
+        $specialty_term = get_term_by('name', $listing_search_data, 'lawyer_specialte');
+
+        if ($city_term) {
+            $city = $city_term->term_id;
+        }elseif ($specialty_term) {
+            $specialty = $specialty_term->term_id;
+            $specialty_parent = $specialty_term->parent;
+        }else{
+           $full_name =  $listing_search_data;
+        }
+
+    }
+
+    if(isset($specialty) && !empty($specialty) && $specialty!="-1"){
+        $specialty_query = array(
+            "relation" => "OR",
+            array(
+                'key'     => "specialties",
+                'value'   => serialize(strval($specialty)),
+                'compare' => 'LIKE'
+            )
+        );
+
+        if (isset($specialty_parent)) {
+            array_push($specialty_query, array(
+                'key'     => "specialties",
+                'value'   =>serialize(strval($specialty_parent)),
+                'compare' => 'LIKE'
+            ));
+        }
+        
+        array_push($meta_query,$specialty_query);
+    }
+
+    if(isset($city) && !empty($city) && $city!="-1"){
+        array_push($meta_query,array(
+            'key'     => "city",
+            'value'   =>$city,
+            'compare' => '='
+        ));
+    }
+
+    if(isset($full_name) && !empty($full_name)){
+        $name = explode(" ",$full_name);
+        $first_name = $name[0];
+        $last_name = $name[1];
+
+        array_push($meta_query,array(
+            'key'     => "first_name",
+            'value'   => $first_name,
+            'compare' => 'LIKE'
+        ));
+
+        array_push($meta_query,array(
+            'key'     => "last_name",
+            'value'   => $last_name,
+            'compare' => 'LIKE'
+        ));
+    }
+    // USER ARGS
     $args = array (
         'role'       => 'lawyer',
         'order'      => 'ASC',

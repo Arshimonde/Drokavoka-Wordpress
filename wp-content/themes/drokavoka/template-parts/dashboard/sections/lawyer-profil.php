@@ -165,11 +165,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label><?=_e("Ville")?></label>
-                    <input 
-                        type="text" class="form-control" name="city"
-                        placeholder="<?=_e("Votre Ville")?>"
-                        value="<?=$city?>"
-                    >
+                    <?php render_cities_select($city); ?>
                 </div>
             </div>
             <div class="col-md-6">

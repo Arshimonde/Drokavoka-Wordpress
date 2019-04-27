@@ -21,26 +21,32 @@ function drokavoka_scripts() {
 	wp_enqueue_script( 'select-box', $vendor_url."/jquery.selectbox-0.2.js");
 	wp_enqueue_script( 'retina-replace', $vendor_url."/retina-replace.min.js");
 	wp_enqueue_script( 'magnific-popup', $vendor_url."/jquery.magnific-popup.min.js");
-	
 	// Custom JS
 	if(is_page("dashboard")):
 		wp_enqueue_script( 'admin', $js_url. '/admin.js');
 	endif;
 
-	wp_enqueue_script( 'leaflet-js',$js_url.'/leaflet.js');
-	wp_enqueue_script( 'custom', $js_url. '/custom.js');
-	wp_enqueue_script( 'dropzone-js', $vendor_url. '/dropzone.min.js');
+	wp_enqueue_script( 'leaflet-js',$js_url.'/leaflet.js');	wp_enqueue_script( 'dropzone-js', $vendor_url. '/dropzone.min.js');
 	wp_enqueue_script( 'date-picker', $js_url. '/bootstrap-datepicker.js');
+	wp_enqueue_script( 'custom', $js_url. '/custom.js');
+
     //Comments  JS
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
 
 	// WP LOCALIZE SCRIPT
-	wp_localize_script("custom", "ajax_object",array(
+	$lawyers_name = get_lawyers_names();
+	// list lawyers search data
+	$search_data = get_listing_search_data();
+	// list lawyers search data end
+	$params = array(
 		"ajax_url"=>admin_url("admin-ajax.php"),
 		'nonce' => wp_create_nonce( "ajax_nounce" ),
-	));
+	);
+	$params["lawyers_names"] = $lawyers_name;
+	$params["listing_search_data"] = $search_data;
+	wp_localize_script("custom", "ajax_object",$params);
 }
 
 add_action( 'wp_enqueue_scripts', 'drokavoka_scripts' );

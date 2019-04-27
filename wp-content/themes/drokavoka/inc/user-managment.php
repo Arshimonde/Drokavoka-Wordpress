@@ -49,7 +49,7 @@
             }
                 // city
             if(isset($data["city"]) && !empty($data["city"])){
-                update_user_meta($user_id, "city", strtolower($data["city"]));
+                update_user_meta($user_id, "city", $data["city"]);
             }
                  // state
             if(isset($data["state"]) && !empty($data["state"])){
