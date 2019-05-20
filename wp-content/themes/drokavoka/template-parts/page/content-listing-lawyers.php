@@ -91,6 +91,10 @@
             'compare' => 'LIKE'
         ));
     }
+
+    
+
+
     // USER ARGS
     $args = array (
         'role'       => 'lawyer',
@@ -105,9 +109,6 @@
     $lawyers = $user_query->get_results();
 
     // WP USER QUERY END
-
-
-
 
     include "listing-lawyers/results-search.php";
 ?>

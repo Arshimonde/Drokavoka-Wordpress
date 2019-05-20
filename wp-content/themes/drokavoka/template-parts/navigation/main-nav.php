@@ -14,27 +14,18 @@
      <!-- user account access end-->
 
      <!-- main menu -->
-    <div class="main-menu">
-        <ul>
-            <li class="submenu">
-                <a href="#" class="show-submenu">
-                    Accueil<i class="icon-down-open-mini"></i>
-                </a>
-                <ul>
-                    <li><a href="index.html">Sous Menu</a></li>
-                </ul>
-            </li>
-            <li class="submenu">
-                <a href="#" class="show-submenu">
-                    Menu 2<i class="icon-down-open-mini"></i>
-                </a>
-                <ul>
-                    <li>
-                        <a href="#">Sous Menu</a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-    </div>
+    <?php
+       wp_nav_menu(
+            array(
+                "container"         => "nav",
+                "container_class"   => "main-menu",
+                "container_id"      => "nav",
+                "fallback_cb"       => false,
+                //"menu_class"        => "six columns omega main-nav sf-menu",
+                "theme_location"    => "main-menu",
+                //"walker"            => 'Wpse8170_Menu_Walker',
+            )
+        );
+    ?>
     <!-- main-menu end -->
 </nav>

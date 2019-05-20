@@ -19,8 +19,12 @@
             <li>124 Patients</li>
         </ul> -->
         <ul class="contacts">
-            <?php if(isset($city) && !empty($city)): ?>
-            <li><h6><?=_e("Ville")?></h6><?=$city?></li>
+            <?php 
+                if(isset($city) && !empty($city)):
+                    $city_term = get_term($city,"cities");
+                    $city_name = $city_term->name;
+            ?>
+            <li><h6><?=_e("Ville")?></h6><?=$city_name?></li>
             <?php endif; ?>
 
             <?php if(isset($address) && !empty($address)): ?>
