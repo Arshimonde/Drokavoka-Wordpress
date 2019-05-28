@@ -112,3 +112,37 @@ h3 a:hover{
     min-height: 488px; 
 }
 /* MAP END*/
+
+
+/* Reviews */
+.glsr-review{
+    padding: 25px;
+    border: 1px solid #ededed;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+.glsr-review-title{
+    margin-bottom: 0;
+}
+.glsr-review-title h3{
+    font-size: 14px;
+}
+.glsr-default .glsr-review>div {
+    margin-bottom: 5px;
+}
+.reviews-container .glsr-default .glsr-review {
+    margin-bottom: 15px;
+}
+.page-numbers {
+    margin-right: 5px;
+}
+.glsr-navigation {
+    margin-bottom: 15px;
+}
+.glsr-navigation .nav-links {
+   display: flex;
+}
+/* Reviews END*/

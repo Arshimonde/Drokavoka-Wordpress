@@ -18,29 +18,28 @@
             <li>854 Views</li>
             <li>124 Patients</li>
         </ul> -->
-        <ul class="contacts">
+        <ul class="contacts row">
             <?php 
                 if(isset($city) && !empty($city)):
                     $city_term = get_term($city,"cities");
                     $city_name = $city_term->name;
             ?>
-            <li><h6><?=_e("Ville")?></h6><?=$city_name?></li>
-            <?php endif; ?>
-
-            <?php if(isset($address) && !empty($address)): ?>
-            <li><h6><?=_e("Adresse")?></h6><?=$address?>, <?=$postal_code?></li>
+            <li class="col-md-6 pl-0 px-1"><h6><?=_e("Ville")?></h6><?=$city_name?></li>
             <?php endif; ?>
             
             <?php if(isset($phone) && !empty($phone)): ?>
-            <li><h6><?=_e("Téléphone")?></h6><a href="tel://<?=$phone?>"><?=$phone?></a></li>
+            <li class="col-md-6 px-1"><h6><?=_e("Téléphone")?></h6><a href="tel://<?=$phone?>"><?=$phone?></a></li>
             <?php endif; ?>
 
             <?php if(isset($fix) && !empty($fix)): ?>
-            <li><h6><?=_e("Fix")?></h6><a href="tel://<?=$fix?>"><?=$fix?></a></li>
+            <li class="col-md-6 pl-0 px-1"><h6><?=_e("Fix")?></h6><a href="tel://<?=$fix?>"><?=$fix?></a></li>
             <?php endif; ?>
 
             <?php if(isset($fax) && !empty($fax)): ?>
-            <li><h6><?=_e("Fax")?></h6><?=$fax?></li>
+            <li class="col-md-6 px-1"><h6><?=_e("Fax")?></h6><?=$fax?></li>
+            <?php endif; ?>
+            <?php if(isset($address) && !empty($address)): ?>
+            <li class="col-md-12 px-0"><h6><?=_e("Adresse")?></h6><?=$address?>, <?=$postal_code?></li>
             <?php endif; ?>
         </ul>
         <div class="text-center"><a href="#" class="btn_1 outline"><i class="icon_pin"></i> <?=_e("Voir sur map")?></a></div>

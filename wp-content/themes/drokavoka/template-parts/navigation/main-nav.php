@@ -8,8 +8,40 @@
 
     <!-- user account access -->
     <ul id="top_access">
-        <li><a href="#"><i class="pe-7s-user"></i></a></li>
-        <li><a href="#"><i class="pe-7s-add-user"></i></a></li>
+        <?php if(!is_user_logged_in()):?>
+        <li><a href="/login"><i class="pe-7s-user"></i></a></li>
+        <li><a href="/signup"><i class="pe-7s-add-user"></i></a></li>
+        <?php 
+            else: 
+                $current_user = wp_get_current_user();
+                $user_id =  $current_user->ID;
+                // full name
+                $fname = $current_user->user_firstname ;
+                $lname = $current_user->user_lastname; 
+                $fullname = $fname.' '.$lname;
+                if (!isset($fullname) || empty($fullname)) {
+                   $fullname = $current_user->user_login;
+                }
+                // image
+                $img_id = get_user_meta($user_id,"wp_user_avatar",true);
+                $avatar_url = wp_get_attachment_image_url($img_id);
+                if($avatar_url == false){
+                    $avatar_url = "http://via.placeholder.com/150x150.jpg";
+                }
+            
+        ?>
+        <li id="user">
+            <a href="/dashboard">
+                <figure>
+                    <img 
+                        src="<?=$avatar_url?>" 
+                        alt="<?=$fullname?>"
+                    >
+                </figure>
+                <?=$fullname?>
+            </a>
+        </li>
+        <?php endif;?>
     </ul>
      <!-- user account access end-->
 
@@ -21,9 +53,7 @@
                 "container_class"   => "main-menu",
                 "container_id"      => "nav",
                 "fallback_cb"       => false,
-                //"menu_class"        => "six columns omega main-nav sf-menu",
                 "theme_location"    => "main-menu",
-                //"walker"            => 'Wpse8170_Menu_Walker',
             )
         );
     ?>

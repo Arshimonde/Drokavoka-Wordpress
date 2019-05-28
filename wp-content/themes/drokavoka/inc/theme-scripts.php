@@ -28,6 +28,13 @@ function drokavoka_scripts() {
 
 	wp_enqueue_script( 'leaflet-js',$js_url.'/leaflet.js');	wp_enqueue_script( 'dropzone-js', $vendor_url. '/dropzone.min.js');
 	wp_enqueue_script( 'date-picker', $js_url. '/bootstrap-datepicker.js');
+	if (is_page("listing-lawyers")) {
+		// maps
+		wp_enqueue_script( 'maps-api', 'http://maps.googleapis.com/maps/api/js?key=AIzaSyAfkwBPa0opzRFbC7gbJ1p1ytH-4O_6vT4');
+		wp_enqueue_script( 'infobox', $js_url. '/infobox.js',array("maps-api"));
+		wp_enqueue_script( 'map-listing', $js_url. '/map_listing.js',array('maps-api','infobox'));
+		// maps end
+	}
 	wp_enqueue_script( 'custom', $js_url. '/custom.js');
 
     //Comments  JS
@@ -36,6 +43,7 @@ function drokavoka_scripts() {
 	}
 
 	// WP LOCALIZE SCRIPT
+	
 	$lawyers_name = get_lawyers_names();
 	// list lawyers search data
 	$search_data = get_listing_search_data();
@@ -47,6 +55,15 @@ function drokavoka_scripts() {
 	$params["lawyers_names"] = $lawyers_name;
 	$params["listing_search_data"] = $search_data;
 	wp_localize_script("custom", "ajax_object",$params);
+
+	// pass url of theme to map_listing.js
+	$theme_url = get_template_directory_uri();
+	$lawyers = get_lawyers_for_maps();
+	wp_localize_script("maps-api", "theme", array(
+		"theme_url" => $theme_url,
+		"images_url" => $theme_url."/assets/images",
+		"lawyers" => $lawyers 
+	));
 }
 
 add_action( 'wp_enqueue_scripts', 'drokavoka_scripts' );

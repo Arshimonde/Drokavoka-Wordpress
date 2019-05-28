@@ -67,3 +67,10 @@ if ( defined( 'JETPACK__VERSION' ) ) {
  */
 
 require get_template_directory() . '/inc/user-managment.php';
+
+
+// HOOKS 
+add_action( 'site-reviews/review/created', function( $review, $request ) {
+	update_post_meta($review->ID, "assigned_to",$request->assigned_to);
+	update_post_meta($review->ID, "lawyer",$request->assigned_to);
+}, 10, 2 );

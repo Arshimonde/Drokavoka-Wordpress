@@ -176,6 +176,7 @@ jQuery(function($){
             limit: 8
         });
         // AUTOCOMPLETE END
+
     });
     
 

@@ -13,50 +13,14 @@ jQuery(document).ready(function(){
 		mapObject,
 		markers = [],
 		markersData = {
-			'Doctors': [
-			{
-				name: 'Dr. Jhoanna Steel',
-				location_latitude: 48.873792, 
-				location_longitude: 2.295028,
-				map_image_url: 'img/doctor_listing_1.jpg',
-				type: 'Psicologist - Pediatrician',
-				url_detail: 'detail-page.html',
-				name_point: 'Dr. Jhoanna Steel',
-				description_point: '35 Newtownards Road, Belfast, BT4.',
-				get_directions_start_address: '',
-				phone: '+3934245255'
-			},
-				{
-				name: 'Dr. Robert Carl',
-				location_latitude: 48.800040, 
-				location_longitude: 2.139670,
-				map_image_url: 'img/doctor_listing_1.jpg',
-				type: 'Psicologist',
-				url_detail: 'detail-page.html',
-				name_point: 'Dr. Robert Carl',
-				description_point: '35 Newtownards Road, Belfast, BT4.',
-				get_directions_start_address: '',
-				phone: '+3934245255'
-			},
-			{
-				name: 'Dr. Mark Twain',
-				location_latitude: 48.846222, 
-				location_longitude: 2.346414,
-				map_image_url: 'img/doctor_listing_1.jpg',
-				type: 'Primary Care',
-				url_detail: 'detail-page.html',
-				name_point: 'Dr. Mark Twain',
-				description_point: '35 Newtownards Road, Belfast, BT4.',
-				get_directions_start_address: '',
-				phone: '+3934245255'
-			}
-			]
+			'Doctors': theme.lawyers
 
 		};
 
 			var mapOptions = {
 				zoom: 10,
-				center: new google.maps.LatLng(48.865633, 2.321236),
+				maxZoom : 18,
+				center: new google.maps.LatLng(33.9991967, -6.8638993),
 				mapTypeId: google.maps.MapTypeId.ROADMAP,
 
 				mapTypeControl: false,
@@ -190,26 +154,30 @@ jQuery(document).ready(function(){
 			var
 			marker;
 			mapObject = new google.maps.Map(document.getElementById('map_listing'), mapOptions);
+			var bounds = new google.maps.LatLngBounds();
 			for (var key in markersData)
 				markersData[key].forEach(function (item) {
-					marker = new google.maps.Marker({
-						position: new google.maps.LatLng(item.location_latitude, item.location_longitude),
-						map: mapObject,
-						icon: 'img/pins/' + key + '.png',
-					});
-
-					if ('undefined' === typeof markers[key])
-						markers[key] = [];
-					markers[key].push(marker);
-					google.maps.event.addListener(marker, 'click', (function () {
-      closeInfoBox();
-      getInfoBox(item).open(mapObject, this);
-      mapObject.setCenter(new google.maps.LatLng(item.location_latitude, item.location_longitude));
-     }));
-
+					var markerLatLng;
+					if (item.location_longitude != '' && item.location_latitude != '') {
+						markerLatLng = new google.maps.LatLng(item.location_latitude, item.location_longitude);
+						marker = new google.maps.Marker({
+							position: markerLatLng,
+							map: mapObject,
+							icon: theme.images_url+'/pins/' + key + '.png',
+						});
+						bounds.extend(markerLatLng);
+						if ('undefined' === typeof markers[key])
+							markers[key] = [];
+						markers[key].push(marker);
+						google.maps.event.addListener(marker, 'click', (function () {
+						closeInfoBox();
+						getInfoBox(item).open(mapObject, this);
+						mapObject.setCenter(new google.maps.LatLng(item.location_latitude, item.location_longitude));
+						}));
+					}
 					
 				});				
-
+			mapObject.fitBounds(bounds);
 		function hideAllMarkers () {
 			for (var key in markers)
 				markers[key].forEach(function (marker) {
@@ -231,7 +199,7 @@ jQuery(document).ready(function(){
 		};
 
 		function closeInfoBox() {
-			$('div.infoBox').remove();
+			jQuery('div.infoBox').remove();
 		};
 
 		function getInfoBox(item) {
@@ -251,7 +219,7 @@ jQuery(document).ready(function(){
 				maxWidth: 0,
 				pixelOffset: new google.maps.Size(10, 105),
 				closeBoxMargin: '',
-				closeBoxURL: "img/close_infobox.png",
+				closeBoxURL: theme.images_url+"/close_infobox.png",
 				isHidden: false,
 				alignBottom: true,
 				pane: 'floatPane',
