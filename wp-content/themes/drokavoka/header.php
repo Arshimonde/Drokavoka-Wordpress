@@ -41,8 +41,12 @@
 		get_template_part( 'template-parts/header/preloader');
 		//don't show the header if page == dashboard
 		if(!is_page("dashboard")):
+			$header_class = "header_sticky";
+			if (isset($_GET["layout"]) && $_GET["layout"] == 'map' ) {
+				$header_class = "header_map";
+			}
 	?>
-	<header class="header_sticky">
+	<header class="<?=$header_class?>">
 		<div class="container">
 			<div class="row">
 				<?php

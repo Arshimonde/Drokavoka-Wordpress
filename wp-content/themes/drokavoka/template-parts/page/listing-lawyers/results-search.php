@@ -1,7 +1,13 @@
 <div id="results">
     <div class="container">
         <div class="row">
-            <div class="col-md-6">
+            <?php
+                $col_class ="col-md-6" ;
+                if ($layout == "map") {
+                    $col_class ="col-md-12 mb-2";
+                }
+            ?>
+            <div class="<?=$col_class?>">
                 <h4>
                     <?=__("Total Nombre d'avocats trouvé est ")?>
                     <strong> 
@@ -9,7 +15,7 @@
                     </strong> 
                 </h4>
             </div>
-            <div class="col-md-6">
+            <div class="<?=$col_class?>">
                 <form method="post" action="/listing-lawyers">
                     <div class="search_bar_list">
                         <?php

@@ -14,7 +14,6 @@ jQuery(document).ready(function(){
 		markers = [],
 		markersData = {
 			'Doctors': theme.lawyers
-
 		};
 
 			var mapOptions = {
@@ -226,8 +225,12 @@ jQuery(document).ready(function(){
 				enableEventPropagation: true
 			});
 		};
-		
-		function onHtmlClick(location_type, key){
-     google.maps.event.trigger(markers[location_type][key], "click");
-}
+
+		// on view on map click
+		jQuery(".view-on-map").click(function(e) {
+			e.preventDefault();
+			var location_type = jQuery(this).data("location-type");
+			var key = jQuery(this).data("key");
+			google.maps.event.trigger(markers[location_type][key], "click");
+		});
 });
