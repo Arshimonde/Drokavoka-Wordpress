@@ -42,7 +42,12 @@
 		//don't show the header if page == dashboard
 		if(!is_page("dashboard")):
 			$header_class = "header_sticky";
+			
 			if (isset($_GET["layout"]) && $_GET["layout"] == 'map' ) {
+				$header_class = "header_map";
+			}
+
+			if (isset($_POST["layout"]) && $_POST["layout"] == 'map' ) {
 				$header_class = "header_map";
 			}
 	?>

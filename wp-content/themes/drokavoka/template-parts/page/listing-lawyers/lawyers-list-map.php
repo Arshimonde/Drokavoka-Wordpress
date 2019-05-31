@@ -10,6 +10,7 @@
 <div class="row row-height">
     <div class="col-lg-5 content-left">
         <?php
+            echo "<br><br>";
             include "results-search.php";
             include "sort-by.php";
 

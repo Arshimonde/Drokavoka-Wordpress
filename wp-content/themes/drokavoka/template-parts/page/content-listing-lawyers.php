@@ -7,6 +7,9 @@
     if (isset($_GET["layout"]) && !empty($_GET["layout"])) {
         $layout = $_GET["layout"];
     }
+    if (isset($_POST["layout"]) && !empty($_POST["layout"])) {
+        $layout = $_POST["layout"];
+    }
 
     // container type 
     $container_class = "container-fluid full-height";

@@ -12,8 +12,16 @@
 ?>
 
 	</div><!-- #content -->
+	<?php
+		$layout = "list";
+		if (isset($_GET["layout"])) {
+			$layout = $_GET["layout"];
+		}
 
-	<?php if(!is_page("dashboard")):?>
+		if (isset($_POST["layout"])) {
+			$layout = $_POST["layout"];
+		}
+		if(!is_page("dashboard") && $layout != 'map'):?>
 
 	<footer id="colophon" class="site-footer">
 		<div class="site-info">

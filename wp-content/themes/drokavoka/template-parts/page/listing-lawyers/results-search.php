@@ -17,6 +17,7 @@
             </div>
             <div class="<?=$col_class?>">
                 <form method="post" action="/listing-lawyers">
+                    <input type="hidden" name="layout" value="<?=$layout?>"/>
                     <div class="search_bar_list">
                         <?php
                             $search_value = "";
