@@ -1,4 +1,4 @@
-<div class="tab-pane fade active show" id="general" role="tabpanel" aria-labelledby="general-tab">
+<div class="tab-pane fade" id="general" role="tabpanel" aria-labelledby="general-tab">
     <?php if(isset($specialties) && !empty($specialties)):?>
     <div class="indent_title_in">
         <i class="pe-7s-study"></i>
