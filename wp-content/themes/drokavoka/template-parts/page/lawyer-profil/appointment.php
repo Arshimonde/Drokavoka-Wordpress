@@ -1,73 +1,86 @@
 <div class="tab-pane fade show active" id="book" role="tabpanel" aria-labelledby="book-tab">
     <p class="lead add_bottom_30">Sed pretium, ligula sollicitudin laoreet viverra, tortor libero sodales leo, eget blandit nunc tortor eu nibh. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
-    <form>
+    <form action="/confirm-reserving" method="POST">
+        <input type="hidden" name="full_name" value="<?=$first_name?> <?=$last_name?>">
         <div class="main_title_3">
-            <h3><strong>1</strong>Select your date</h3>
+            <h3>
+                <strong>1</strong>
+                <?=__("Sélectionnez votre date","drokavoka")?>
+            </h3>
         </div>
         <div class="form-group add_bottom_45">
             <div id="calendar"></div>
-            <input type="hidden" id="my_hidden_input">
+            <input type="hidden" id="date" name="date">
             <ul class="legend">
-                <li><strong></strong>Available</li>
-                <li><strong></strong>Not available</li>
+                <li>
+                    <strong></strong>
+                    <?=__("Disponible","drokavoka")?>
+                </li>
+                <li>
+                    <strong></strong>
+                    <?=__("Indisponible","drokavoka")?>
+                </li>
             </ul>
         </div>
         <div class="main_title_3">
-            <h3><strong>2</strong>Select your time</h3>
+            <h3>
+                <strong>2</strong>
+                <?=__("Sélectionnez votre heure","drokavoka")?>
+            </h3>
         </div>
         <div class="row justify-content-center add_bottom_45">
             <div class="col-md-3 col-6 text-center">
                 <ul class="time_select">
                     <li>
-                        <input type="radio" id="radio1" name="radio_time" value="09.30am">
-                        <label for="radio1">09.30</label>
+                        <input type="radio" id="radio1" name="time" value="09:30">
+                        <label for="radio1">09:30</label>
                     </li>
                     <li>
-                        <input type="radio" id="radio2" name="radio_time" value="10.00am">
-                        <label for="radio2">10.00</label>
+                        <input type="radio" id="radio2" name="time" value="10:00">
+                        <label for="radio2">10:00</label>
                     </li>
                     <li>
-                        <input type="radio" id="radio3" name="radio_time" value="10.30am">
-                        <label for="radio3">10.30</label>
+                        <input type="radio" id="radio3" name="time" value="10:30">
+                        <label for="radio3">10:30</label>
                     </li>
                     <li>
-                        <input type="radio" id="radio4" name="radio_time" value="11.00am">
-                        <label for="radio4">11.00</label>
+                        <input type="radio" id="radio4" name="time" value="11:00">
+                        <label for="radio4">11:00</label>
                     </li>
                     <li>
-                        <input type="radio" id="radio5" name="radio_time" value="11.30am">
-                        <label for="radio5">11.30</label>
+                        <input type="radio" id="radio5" name="time" value="11:30">
+                        <label for="radio5">11:30</label>
                     </li>
                     <li>
-                        <input type="radio" id="radio6" name="radio_time" value="12.00am">
-                        <label for="radio6">12.00</label>
+                        <input type="radio" id="radio6" name="time" value="12:00">
+                        <label for="radio6">12:00</label>
                     </li>
                 </ul>
             </div>
             <div class="col-md-3 col-6 text-center">
                 <ul class="time_select">
                     <li>
-                        <input type="radio" id="radio7" name="radio_time" value="01.30pm">
+                        <input type="radio" id="radio7" name="time" value="13:30">
                         <label for="radio7">13:30</label>
                     </li>
                     <li>
-                        <input type="radio" id="radio8" name="radio_time" value="02.00pm">
+                        <input type="radio" id="radio8" name="time" value="14:00">
                         <label for="radio8">14:00</label>
                     </li>
                     <li>
-                        <input type="radio" id="radio9" name="radio_time" value="02.30pm">
+                        <input type="radio" id="radio9" name="time" value="14:30">
                         <label for="radio9">14:30</label>
                     </li>
                     <li>
-                        <input type="radio" id="radio10" name="radio_time" value="03.00pm">
+                        <input type="radio" id="radio10" name="time" value="15:00">
                         <label for="radio10">15:00</label>
                     </li>
                     <li>
-                        <input type="radio" id="radio11" name="radio_time" value="03.30pm">
+                        <input type="radio" id="radio11" name="time" value="15:30">
                         <label for="radio11">15:30</label>
                     </li>
                     <li>
-                        <input type="radio" id="radio12" name="radio_time" value="04.00pm">
+                        <input type="radio" id="radio12" name="time" value="16:00">
                         <label for="radio12">16:00</label>
                     </li>
                 </ul>
@@ -76,18 +89,22 @@
         <!-- /row -->
         
         <div class="main_title_3">
-            <h3><strong>3</strong>Select visit</h3>
+            <h3>
+                <strong>3</strong>
+                <?=__("Quel est votre besoin ?","drokavoka")?>
+            </h3>
         </div>
         <ul class="treatments clearfix">
             <?php
                 if( have_rows('treatments',"user_".$user_id) ):
+                    $increment = 1;
                     while ( have_rows('treatments',"user_".$user_id) ) : 
                         the_row();
             ?>
             <li>
                 <div class="checkbox">
-                    <input type="checkbox" class="css-checkbox" id="visit1" name="visit1">
-                    <label for="visit1" class="css-label">
+                    <input type="checkbox" class="css-checkbox" id="visit<?=$increment?>" name="need[]" value="<?= the_sub_field('title') ?>;<?=the_sub_field('price') ?>">
+                    <label for="visit<?=$increment?>" class="css-label">
                         <?= the_sub_field('title') ?>
                          <strong>                        
                             <?= the_sub_field('price') ?> DH
@@ -95,13 +112,18 @@
                     </label>
                 </div>
             </li>
-            <?php 
+            <?php  
+                    $increment++;
                     endwhile;
                 endif;
             ?>
         </ul>
+        <hr>
+        <p class="text-center">
+            <button type="submit" class="btn_1 medium">
+                <?=__("Reserver maintenant","drokavoka")?>
+            </button>
+        </p>
     </form>					
-    <hr>
-    <p class="text-center"><a href="booking-page.html" class="btn_1 medium">Book Now</a></p>
 </div>
 <!-- /tab_1 -->

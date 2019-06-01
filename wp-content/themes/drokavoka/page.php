@@ -37,8 +37,10 @@ get_header();
 				//Lawyer Profil  Page 
 				elseif(is_page("lawyer-profil")):
 					get_template_part("template-parts/page/content","lawyer-profil");
+				//Confirm booking
+				elseif(is_page("confirm-reserving")):
+					get_template_part("template-parts/page/content","booking");
 				endif;
-				//Registration Page END
 			?>
 		</main><!-- #main -->
 	</div><!-- #primary -->
