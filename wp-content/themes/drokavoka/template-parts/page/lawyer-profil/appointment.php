@@ -2,6 +2,7 @@
     <p class="lead add_bottom_30">Sed pretium, ligula sollicitudin laoreet viverra, tortor libero sodales leo, eget blandit nunc tortor eu nibh. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
     <form action="/confirm-reserving" method="POST">
         <input type="hidden" name="full_name" value="<?=$first_name?> <?=$last_name?>">
+        <input type="hidden" name="lawyer_id" value="<?=$user_id?>">
         <div class="main_title_3">
             <h3>
                 <strong>1</strong>

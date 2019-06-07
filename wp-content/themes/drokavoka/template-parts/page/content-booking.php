@@ -4,17 +4,22 @@
         $time = "";
         $needs = "";
         $name  = "";
+        $lawyer_id  = "";
         if (isset($_POST) && !empty($_POST)) {
             $date = $_POST["date"];
             $time = $_POST["time"];
             $needs = $_POST["need"];
             $name = $_POST["full_name"];
+            $lawyer_id = $_POST["lawyer_id"];
         }else {
             wp_redirect("/404");
             exit();
         }
     ?>
-    <div class="row">
+    <form class="row" action = "/booking-success" method = "POST" >
+        <input type="hidden" name="lawyer_id" value="<?=$lawyer_id?>">
+        <input type="hidden" name="date" value="<?=$date?>">
+        <input type="hidden" name="time" value="<?=$time?>">
         <div class="col-xl-8 col-lg-8">
             <div class="box_general_3 cart">
                 <!-- <div class="message">
@@ -27,17 +32,32 @@
                     </p>
                 </div>
                 <div class="step">
+                    <?php
+                        $first_name = "";
+                        $last_name = "";
+                        $email = "";
+                        $phone = "";
+                        if(is_user_logged_in()){
+                            $current_user = wp_get_current_user();
+                            $email = $current_user->user_email;
+                            $first_name = $current_user->user_firstname;
+                            $last_name = $current_user->user_lastname;
+                            $phone = get_user_meta($current_user->ID, "phone", true);
+                        }
+                    ?>
                     <div class="row">
                         <div class="col-md-6 col-sm-6">
                             <div class="form-group">
                                 <label><?=__("Prénom","drokavoka")?></label>
-                                <input type="text" class="form-control" id="firstname_booking" name="firstname_booking" placeholder="Lorem">
+                                <input type="text" class="form-control" id="firstname_booking" name="firstname_booking" placeholder="Lorem" value="<?=$first_name?>" required>
                             </div>
                         </div>
                         <div class="col-md-6 col-sm-6">
                             <div class="form-group">
                                 <label><?=__("Nom","drokavoka")?></label>
-                                <input type="text" class="form-control" id="lastname_booking" name="lastname_booking" placeholder="ipsum">
+                                <input type="text" class="form-control" id="lastname_booking" name="lastname_booking" placeholder="ipsum" 
+                                value="<?=$last_name?>"
+                                required>
                             </div>
                         </div>
                     </div>
@@ -45,7 +65,8 @@
                         <div class="col-md-6 col-sm-6">
                             <div class="form-group">
                                 <label><?=__("Email","drokavoka")?></label>
-                                <input type="email" id="email_booking" name="email_booking" class="form-control" placeholder="example@doe.com">
+                                <input type="email" id="email_booking" name="email_booking" class="form-control"
+                                value="<?=$email?>" placeholder="example@doe.com" required>
                             </div>
                         </div>
                         <div class="col-md-6 col-sm-6">
@@ -53,7 +74,7 @@
                                 <label>
                                     <?=__("Confirmer l'email","drokavoka")?>
                                 </label>
-                                <input type="email" id="email_booking_2" name="email_booking_2" class="form-control" placeholder="example@doe.com">
+                                <input type="email" id="email_booking_2" name="email_booking_2" class="form-control" placeholder="example@doe.com" required>
                             </div>
                         </div>
                     </div>
@@ -61,7 +82,9 @@
                         <div class="col-md-6 col-sm-6">
                             <div class="form-group">
                                 <label><?=__("Téléphone","drokavoka")?></label>
-                                <input type="text" id="telephone_booking" name="telephone_booking" class="form-control" placeholder="00 00 00 00 00">
+                                <input type="text" id="telephone_booking" name="telephone_booking" class="form-control" placeholder="00 00 00 00 00" 
+                                value="<?=$phone?>"
+                                required>
                             </div>
                         </div>
                     </div>
@@ -72,7 +95,7 @@
         <!-- /col -->
         <aside class="col-xl-4 col-lg-4">
             <div class="box_general_3 booking">
-                <form>
+
                     <div class="title">
                         <h3><?=__("Votre réservation","drokavoka")?></h3>
                     </div>
@@ -102,26 +125,27 @@
                                 $total_price += intval($need[1]);
                         ?>
                         <li>
+                            <input type="hidden" name="need[]" value="<?=$need[0]?>;<?=$need[1]?>"/>
                             <?=$need[0]?> 
                             <strong class="float-right"><?=$need[1]?> DH</strong>
                         </li>
                         <?php } ?>
                         <li class="total">
-                            Total 
+                            <?=__("Total","drokavoka")?> 
                             <strong class="float-right">
                                 <?=$total_price?> DH
                             </strong>
                         </li>
                     </ul>
                     <hr>
-                    <a href="confirm.html" class="btn_1 full-width">
+                    <button type="submit" class="btn_1 full-width">
                         <?=__("Confirmer","drokavoka")?>
-                    </a>
-                </form>
+                    </button>
+
             </div>
             <!-- /box_general -->
         </aside>
         <!-- /asdide -->
-    </div>
+    </form>
     <!-- /row -->
 </div>

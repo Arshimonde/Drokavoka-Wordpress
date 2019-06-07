@@ -40,6 +40,9 @@ get_header();
 				//Confirm booking
 				elseif(is_page("confirm-reserving")):
 					get_template_part("template-parts/page/content","booking");
+				//Confirm booking
+				elseif(is_page("booking-success")):
+					get_template_part("template-parts/page/content","booking-success");
 				endif;
 			?>
 		</main><!-- #main -->

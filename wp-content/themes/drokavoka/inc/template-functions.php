@@ -324,3 +324,40 @@ function get_lawyers_for_maps(){
 	return $data;
 }
 
+
+/****************************************** */
+/* Booking functions
+/****************************************** */
+
+function insert_booking($lawyer_id,$date,$time,$needs,$name,$phone,$email){
+	// insert post
+	$post_id = wp_insert_post(array(
+		"post_author" 	=> $lawyer_id,
+		"post_title"  	=> "Reservation: $name [$date][$time]",
+		"post_status" 	=> "pending",
+		"post_type"   	=> "booking"
+	));
+
+	// insert date & time meta
+	$date = strtotime($date);
+	update_field( "booking_date", date($date) , $post_id );
+	
+	$time = strtotime($time);
+	update_field( "booking_time", $time , $post_id );
+
+	// insert needs meta
+	$repeater_value = array();
+	foreach ($needs as $need) {
+		$need = explode(";",$need);
+		array_push($repeater_value,array(
+			"need" => $need[0],
+			"price"=> $need[1]
+		));
+	}
+	update_field( "booking_needs", $repeater_value, $post_id );
+
+	// insert phone & email & name meta
+	update_field( "client_phone", $phone, $post_id );
+	update_field( "client_name", $name, $post_id );
+	update_field( "client_email", $email, $post_id );
+}

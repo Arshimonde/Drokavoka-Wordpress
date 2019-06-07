@@ -11,7 +11,7 @@
         ?>
         <hr>
         <!-- reviews -->
-        <?php echo do_shortcode('[site_reviews count="3" pagination="ajax" fallback="'.__("Aucun commentaire trouvé.","drokavoka").'" assigned_to = "'.$user_id.'" ]'); ?>
+        <?php echo do_shortcode('[site_reviews count="3" pagination="ajax" fallback="'.__("Soyez le premier à donner votre avis.","drokavoka").'" assigned_to = "'.$user_id.'" ]'); ?>
     </div>
 <!-- End review-container -->
 <hr class="mt-0">
