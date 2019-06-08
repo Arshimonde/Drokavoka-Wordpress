@@ -36,8 +36,8 @@ jQuery(document).ready(function(){
 					style: google.maps.ZoomControlStyle.LARGE,
 					position: google.maps.ControlPosition.RIGHT_BOTTOM
 				},
-				 scrollwheel: false,
-				scaleControl: false,
+				scrollwheel: true,
+				scaleControl: true,
 				scaleControlOptions: {
 					position: google.maps.ControlPosition.LEFT_CENTER
 				},
@@ -153,6 +153,10 @@ jQuery(document).ready(function(){
 			var
 			marker;
 			mapObject = new google.maps.Map(document.getElementById('map_listing'), mapOptions);
+			var directionsService = new google.maps.DirectionsService();
+			var directionsDisplay = new google.maps.DirectionsRenderer();
+			directionsDisplay.setMap(mapObject);
+			
 			var bounds = new google.maps.LatLngBounds();
 			for (var key in markersData)
 				markersData[key].forEach(function (item) {
@@ -233,4 +237,54 @@ jQuery(document).ready(function(){
 			var key = jQuery(this).data("key");
 			google.maps.event.trigger(markers[location_type][key], "click");
 		});
+
+		// on show direction on map click
+		jQuery(".show-direction").click(function(e) {
+			e.preventDefault();
+			if (navigator.geolocation) {
+				var location_type = jQuery(this).data("location-type");
+				var key = jQuery(this).data("key");
+				google.maps.event.trigger(markers[location_type][key], "click");
+				navigator.geolocation.getCurrentPosition(
+					function (position) {
+						var start_lat = position.coords.latitude;
+						var start_lng = position.coords.longitude;
+						var start = new  google.maps.LatLng(start_lat,start_lng);
+						var end = markers[location_type][key].position;
+			
+						var request = {
+							origin: start,
+							destination: end,
+							travelMode: 'DRIVING'
+						};
+			
+						directionsService.route(request, function(result, status) {
+							if (status == 'OK') {
+							  directionsDisplay.setDirections(result);
+							}
+						});
+					},
+					showGeolocationError
+				);
+			} else {
+				swal("Oops" ,"La géolocalisation n'est pas prise en charge par ce navigateur.",  "warning");
+			}
+		});
+
+		function showGeolocationError(error) {
+			switch(error.code) {
+				case error.PERMISSION_DENIED:
+					swal ( "Oops" ,  "Nous ne pouvons pas vous indiquer les directions si vous ne partagez pas votre position" ,  "warning" );
+					break;
+				case error.POSITION_UNAVAILABLE:
+					swal("Oops" , "Les informations de localisation sont indisponibles.",  "warning");
+					break;
+				case error.TIMEOUT:
+					swal("Oops" , "La demande d'obtention de l'emplacement a expiré.",  "warning");
+					break;
+				case error.UNKNOWN_ERROR:
+					swal("Oops" , "Une erreur inconnue est survenue.",  "warning");
+					break;
+			}
+		}
 });

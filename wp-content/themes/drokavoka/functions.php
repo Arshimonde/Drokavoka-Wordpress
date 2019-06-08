@@ -68,6 +68,7 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 
 require get_template_directory() . '/inc/user-managment.php';
 
+require get_template_directory() . '/inc/bookings-functions.php';
 
 // HOOKS 
 add_action( 'site-reviews/review/created', function( $review, $request ) {

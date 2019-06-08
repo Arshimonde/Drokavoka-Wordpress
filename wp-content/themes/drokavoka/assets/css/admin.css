@@ -1109,3 +1109,14 @@ select.form-control:not([size]):not([multiple]) {
 #lawyer_map{ 
   min-height: 350px; 
 }
+
+/* WORDPRESS PAGINATION */
+
+.page-numbers{
+  font-size: 17px;
+  color: #e74e84;
+}
+.page-numbers.current{
+  color: #3f4079;
+}
+/* WORDPRESS PAGINATION END */

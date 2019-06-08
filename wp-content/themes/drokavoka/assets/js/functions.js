@@ -85,19 +85,22 @@
 			loop: true,
 			margin: 10,
 			nav:true,
+			dots:true,
+			navText:["<",">"],
 			responsive: {
 				0: {
-					items: 1
+					items: 1,
 				},
 				600: {
-					items: 2
+					items: 2,
+
 				},
 				1000: {
-					items: 4
+					items: 4,
 				}
 			}
 		});
-	
+		$('#reccomended .owl-nav,#reccomended .owl-dots').show();
 		// Selectbox
 		$(".selectbox").selectbox();
 	

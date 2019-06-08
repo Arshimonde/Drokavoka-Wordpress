@@ -84,31 +84,91 @@
       }
       
       // LAWYER MAP FIELD
-      let lat = $("#latitude");
-      let lon = $("#longitude");
+      if($("#lawyer_map").length != 0){
+        let lat = $("#latitude");
+        let lon = $("#longitude");
 
-      let lat_value = "34.02061708722915";
-      let lon_value = "-6.834633350372315";
-      
-      if(lat.val() !== "" && lon.val() !== ""){
-        lat_value = lat.val();
-        lon_value = lon.val();
+        let lat_value = "34.02061708722915";
+        let lon_value = "-6.834633350372315";
+        
+        if(lat.val() !== "" && lon.val() !== ""){
+          lat_value = lat.val();
+          lon_value = lon.val();
+        }
+        
+        var map = L.map('lawyer_map').setView(new L.LatLng(lat_value, lon_value), 15);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+  
+        map.panTo(new L.LatLng(lat_value, lon_value));
+
+        L.marker([lat_value, lon_value],{ draggable: true })
+        .on("dragend",function (e) {
+          lat.val( this.getLatLng().lat);
+          lon.val(this.getLatLng().lng);
+        })
+        .addTo(map);
       }
-      
-      var map = L.map('lawyer_map').setView(new L.LatLng(lat_value, lon_value), 15);
 
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-      }).addTo(map);
- 
-      map.panTo(new L.LatLng(lat_value, lon_value));
-
-      L.marker([lat_value, lon_value],{ draggable: true })
-      .on("dragend",function (e) {
-        lat.val( this.getLatLng().lat);
-        lon.val(this.getLatLng().lng);
-      })
-      .addTo(map);
+      // LAWYER CONFIRM BOOKING
+      $(".approve").click(function(evt) {
+        $(this).html('<i class="fa fa-lg fa-cog fa-spin"></i>');
+        evt.preventDefault();
+        var post_id = $(this).data("post_id");
+        $.ajax({
+            type : "POST",
+            url: ajax_object.ajax_url,
+            data:{
+              "action": "confirm_booking",
+              "nonce" : ajax_object.nonce,
+              "post_id" : post_id
+            },
+            success: function(response) {
+              swal({
+                type: "success",
+                text:"Rendez-vous a été confirmé",
+                confirmButtonText: 'OK!'
+              }).then((result) => {
+                  if(result.value){
+                      location.reload();
+                  }
+              });
+            }
+        });
+      });
+      // LAWYER CANCEL BOOKING
+      $(".delete").click(function(evt) {
+        evt.preventDefault();
+        $(this).html('<i class="fa fa-lg fa-cog fa-spin"></i>');
+        var post_id = $(this).data("post_id");
+        $.ajax({
+            type : "POST",
+            url: ajax_object.ajax_url,
+            data:{
+              "action": "cancel_booking",
+              "nonce" : ajax_object.nonce,
+              "post_id" : post_id
+            },
+            success: function(response) {
+              swal({
+                type: "success",
+                text:"Rendez-vous a été annulé",
+                confirmButtonText: 'OK!'
+              }).then((result) => {
+                  if(result.value){
+                      location.reload();
+                  }
+              });
+            }
+        });
+      });
+      // Filter 
+      $("#orderby-submit").click(function() {
+        var val = $("#orderby").val();
+        window.location.href = "/dashboard/?section=bookings&status="+val;
+      });
 
   });
 })(jQuery); // End of use strict

@@ -15,6 +15,7 @@
                     $cites = get_terms(array(
                         'taxonomy' => 'cities',
                         'hide_empty' => false,
+
                     ));
                     shuffle( $cites );
                     $cites = array_slice( $cites, 0, 18 );
@@ -53,8 +54,8 @@
                         $specialties = get_terms(array(
                             'taxonomy' => 'lawyer_specialte',
                             'hide_empty' => false,
-                            "parent"=>0,
-                            "hierarchical"=>false,
+                            'hierarchical' => false,
+                            'parent' => 0
                         ));
                         $counter = 1;
                         foreach($specialties as $spec):

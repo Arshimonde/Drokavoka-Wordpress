@@ -27,6 +27,29 @@
                     <span class="nav-link-text"><?=_e("Mon profil")?></span>
                 </a>
             </li>
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="<?=_e("Réservations","drokavoka")?>">
+                <a class="nav-link" href="/dashboard?section=bookings">
+                    <!-- count new bookings -->
+                    <?php
+                        $args = array(
+                            "post_type" => "booking",
+                            "author" => get_current_user_id(),
+                            "post_status" => "pending",
+                        );
+                        $bookings = new WP_Query($args);
+                        $new_count = $bookings->found_posts;
+                    ?>
+                    <i class="fa fa-fw fa-calendar-check-o"></i>
+                    <span class="nav-link-text">
+                        <?=_e("Réservations","drokavoka")?> 
+                        <?php if ( $new_count > 0 ):?>
+                        <span class="badge badge-pill badge-primary">
+                            <?=$new_count?> &nbsp; <?=__("Nouveau","drokavoka") ?>
+                        </span>
+                        <?php endif;?>
+                    </span>
+                </a>
+            </li>
         </ul>
         <!-- side nav END-->
 

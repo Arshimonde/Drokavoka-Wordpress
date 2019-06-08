@@ -9,7 +9,11 @@
         $current_bread = "";
         switch($section){
             case "lawyer-profil":{
-                $current_bread = __("Mon profil");
+                $current_bread = __("Mon profil","drokavoka");
+                break;
+            }
+            case "bookings":{
+                $current_bread = __("Réservations","drokavoka");
                 break;
             }
         }

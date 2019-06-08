@@ -9,8 +9,8 @@
     <!-- user account access -->
     <ul id="top_access">
         <?php if(!is_user_logged_in()):?>
-        <li><a href="/login"><i class="pe-7s-user"></i></a></li>
-        <li><a href="/signup"><i class="pe-7s-add-user"></i></a></li>
+        <li><a href="/login" data-toggle="tooltip" title="<?=__("S'authentifier","drokavoka")?>"><i class="pe-7s-user"></i></a></li>
+        <li><a href="/signup" data-toggle="tooltip" title="<?=__("S'inscrire","drokavoka")?>"><i class="pe-7s-add-user"></i></a></li>
         <?php 
             else: 
                 $current_user = wp_get_current_user();

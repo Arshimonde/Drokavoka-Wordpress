@@ -15,6 +15,10 @@
                      include "sections/lawyer-profil.php";
                      break;
                   }
+                  case "bookings":{
+                     include "sections/bookings.php";
+                     break;
+                  }
                }
 
             endif;

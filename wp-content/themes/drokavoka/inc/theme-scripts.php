@@ -24,6 +24,10 @@ function drokavoka_scripts() {
 	// Custom JS
 	if(is_page("dashboard")):
 		wp_enqueue_script( 'admin', $js_url. '/admin.js');
+		wp_localize_script("admin","ajax_object", array(
+			"ajax_url"=>admin_url("admin-ajax.php"),
+			'nonce' => wp_create_nonce( "ajax_nounce" )
+		));
 	endif;
 
 	wp_enqueue_script( 'leaflet-js',$js_url.'/leaflet.js');	wp_enqueue_script( 'dropzone-js', $vendor_url. '/dropzone.min.js');

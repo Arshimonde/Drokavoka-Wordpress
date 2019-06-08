@@ -1,7 +1,7 @@
 <aside class="col-xl-3 col-lg-4" id="sidebar">
     <div class="box_profile">
         <figure class="mt-2">
-            <img src="<?=$user_avatar_url?>" alt="<?=$first_name?> <?=$last_name?>" class="img-fluid">
+            <img width="100" src="<?=$user_avatar_url?>" alt="<?=$first_name?> <?=$last_name?>" class="img-fluid">
         </figure>
         <small><?=_e("Maître")?></small>
         <h1><?=$first_name?> <?=$last_name?></h1>
