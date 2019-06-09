@@ -27,6 +27,7 @@
                     <span class="nav-link-text"><?=_e("Mon profil")?></span>
                 </a>
             </li>
+            <!-- Bookings -->
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="<?=_e("Réservations","drokavoka")?>">
                 <a class="nav-link" href="/dashboard?section=bookings">
                     <!-- count new bookings -->
@@ -48,6 +49,13 @@
                         </span>
                         <?php endif;?>
                     </span>
+                </a>
+            </li>
+            <!-- Reviews -->
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="<?=_e("Avis","drokavoka")?>">
+                <a class="nav-link" href="/dashboard?section=reviews">
+                    <i class="fa fa-fw fa-star"></i>
+                    <span class="nav-link-text"><?=__("Avis","drokavoka") ?></span>
                 </a>
             </li>
         </ul>

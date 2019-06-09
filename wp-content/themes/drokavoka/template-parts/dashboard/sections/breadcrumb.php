@@ -16,6 +16,10 @@
                 $current_bread = __("Réservations","drokavoka");
                 break;
             }
+            case "reviews":{
+                $current_bread = __("Avis","drokavoka");
+                break;
+            }
         }
     ?>
     <!-- get the current bread end -->

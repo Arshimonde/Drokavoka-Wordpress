@@ -169,6 +169,10 @@
         var val = $("#orderby").val();
         window.location.href = "/dashboard/?section=bookings&status="+val;
       });
+      $("#orderby-reviews-submit").click(function() {
+        var val = $("#orderby-reviews").val();
+        window.location.href = "/dashboard/?section=reviews&order="+val;
+      });
 
   });
 })(jQuery); // End of use strict

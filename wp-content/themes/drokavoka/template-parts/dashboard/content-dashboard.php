@@ -19,6 +19,10 @@
                      include "sections/bookings.php";
                      break;
                   }
+                  case "reviews":{
+                     include "sections/reviews.php";
+                     break;
+                  }
                }
 
             endif;
