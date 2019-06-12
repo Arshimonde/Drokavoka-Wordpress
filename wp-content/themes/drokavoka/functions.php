@@ -75,3 +75,12 @@ add_action( 'site-reviews/review/created', function( $review, $request ) {
 	update_post_meta($review->ID, "assigned_to",$request->assigned_to);
 	update_post_meta($review->ID, "lawyer",$request->assigned_to);
 }, 10, 2 );
+
+// Session
+function start_session() {
+    if(!session_id()) {
+        session_start();
+    }
+}
+
+add_action('init', 'start_session', 1);

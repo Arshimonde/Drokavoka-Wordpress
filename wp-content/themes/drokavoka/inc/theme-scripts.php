@@ -34,7 +34,8 @@ function drokavoka_scripts() {
 	wp_enqueue_script( 'date-picker', $js_url. '/bootstrap-datepicker.js');
 	if (is_page("listing-lawyers")) {
 		// maps
-		wp_enqueue_script( 'maps-api', 'http://maps.googleapis.com/maps/api/js?key=AIzaSyAfkwBPa0opzRFbC7gbJ1p1ytH-4O_6vT4');
+		//key 1 = AIzaSyAfkwBPa0opzRFbC7gbJ1p1ytH-4O_6vT4
+		wp_enqueue_script( 'maps-api', 'http://maps.googleapis.com/maps/api/js?key=AIzaSyBsQd3zWjwAuIc-Hw-3TvEanyiRFUoOAzI');
 		wp_enqueue_script( 'infobox', $js_url. '/infobox.js',array("maps-api"));
 		wp_enqueue_script( 'map-listing', $js_url. '/map_listing.js',array('maps-api','infobox'));
 		// maps end

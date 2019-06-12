@@ -1,23 +1,35 @@
-<aside class="col-xl-3 col-lg-4" id="sidebar">
+<aside class="col-xl-3 col-lg-4">
     <div class="box_profile">
         <figure class="mt-2">
             <img width="100" src="<?=$user_avatar_url?>" alt="<?=$first_name?> <?=$last_name?>" class="img-fluid">
         </figure>
         <small><?=_e("Maître")?></small>
         <h1><?=$first_name?> <?=$last_name?></h1>
-        <!-- <span class="rating">
-            <i class="icon_star voted"></i>
-            <i class="icon_star voted"></i>
-            <i class="icon_star voted"></i>
-            <i class="icon_star voted"></i>
-            <i class="icon_star"></i>
-            <small>(145)</small>
-            <a href="badges.html" data-toggle="tooltip" data-placement="top" data-original-title="Badge Level" class="badge_list_1"><img src="img/badges/badge_1.svg" width="15" height="15" alt=""></a>
-        </span>
+        <?php 
+           include(locate_template("template-parts/page/listing-lawyers/ratings.php")); 
+        ?>
+        
         <ul class="statistic">
-            <li>854 Views</li>
-            <li>124 Patients</li>
-        </ul> -->
+            <?php
+                if (empty($views)) {
+                    $views = 0;
+                }
+
+                if ($views > 1) {
+                    $plural = "s";
+                }  
+            ?>
+            <li><?= $views." ". __("Vue$plural","drokavoka") ?></li>
+            <!-- Clients -->
+            <?php
+                $count = get_user_clients_count($user_id);
+                $plural = "";
+                if ($count > 1) {
+                    $plural = "s";
+                }                
+            ?>
+            <li><?= $count ." ". __("Client$plural","drokavoka") ?></li>
+        </ul>
         <ul class="contacts row">
             <?php 
                 if(isset($city) && !empty($city)):

@@ -1,7 +1,18 @@
-<!-- VARIABLES -->
 <?php
     if(isset($_GET["id"]) && !empty($_GET["id"])):
         $user_id = $_GET["id"];
+        $views_key = 'user-'.$user_id.'-viewed';
+        $views = get_user_meta( $user_id,"user_views",true);
+        // <!-- COUNT Views -->
+        if (!isset($_SESSION[$views_key])) {
+            $_SESSION[$views_key] = true;
+            if (!empty($views)) {
+                update_user_meta($user_id, "user_views", ($views + 1));
+            }else {
+                update_user_meta($user_id, "user_views", 1);
+            }
+        }
+        // <!-- VARIABLES -->
         $lawyer_info = get_userdata( $user_id );
         $first_name = $lawyer_info->first_name;
         $last_name = $lawyer_info->last_name;

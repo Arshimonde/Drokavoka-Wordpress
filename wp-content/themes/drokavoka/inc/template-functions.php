@@ -361,3 +361,44 @@ function insert_booking($lawyer_id,$date,$time,$needs,$name,$phone,$email){
 	update_field( "client_name", $name, $post_id );
 	update_field( "client_email", $email, $post_id );
 }
+
+/****************************************** */
+/* Badges Functions
+/****************************************** */
+function get_user_clients_count($user_id){
+	$clients_args = array(
+		"post_type" => "booking",
+		"author" => $user_id,
+	);
+	$clients = new WP_Query($clients_args);
+	$clients->the_post();
+
+	return $clients->found_posts;
+}
+
+function get_badge_level($views = 0 ,$clients = 0)
+{
+	$views = intval($views);
+	$clients = intval($clients);
+	$level = 1;
+	
+	if ($views < 10  && $clients < 2) {
+		$level = 1;
+	}else if (($views >= 10)  && ($clients >= 2 )) {
+		$level = 2;
+	}
+	else if (($views >= 30 )  && ($clients >= 4 )) {
+		$level = 3;
+	}
+	else if (($views >= 50 )  && ($clients >= 10)) {
+		$level = 4;
+	}
+	else if (($views >= 100)  && ($clients >= 15)) {
+		$level = 5;
+	}
+	else if ($views >= 200 && $clients >= 25) {
+		$level = 6;
+	}
+
+	return $level;
+}
