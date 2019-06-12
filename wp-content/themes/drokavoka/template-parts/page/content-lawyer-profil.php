@@ -19,6 +19,8 @@
         $specialties = get_user_meta( $user_id,"specialties",true);
         $img_id = get_user_meta($user_id,"wp_user_avatar",true);
         $user_avatar_url = wp_get_attachment_image_url($img_id);
+        if(!isset($user_avatar_url) || empty($user_avatar_url))
+            $user_avatar_url = "http://via.placeholder.com/565x565.jpg";
         $address = get_user_meta($user_id,"address",true);
         $city = get_user_meta($user_id,"city",true);
         $postal_code = get_user_meta($user_id,"postal_code",true);
