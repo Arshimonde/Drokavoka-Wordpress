@@ -1,13 +1,18 @@
 <!-- Breadcrumbs-->
 <ol class="breadcrumb">
+    <?php if($section != "dashboard"): ?>
     <li class="breadcrumb-item">
-        <a href="#">Dashboard</a>
+        <a href="/dashboard?section=dashboard"><?=__("Tableau de bord","drokavoka");?></a>
     </li>
-
+    <?php endif;?>
     <!-- get the current bread -->
     <?php
         $current_bread = "";
         switch($section){
+            case "dashboard":{
+                $current_bread = __("Tableau de bord","drokavoka");
+                break;
+            }
             case "lawyer-profil":{
                 $current_bread = __("Mon profil","drokavoka");
                 break;

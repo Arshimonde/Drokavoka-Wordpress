@@ -6,10 +6,15 @@
         // <!-- COUNT Views -->
         if (!isset($_SESSION[$views_key])) {
             $_SESSION[$views_key] = true;
+            $_SESSION["views_time"] = time(); 
             if (!empty($views)) {
                 update_user_meta($user_id, "user_views", ($views + 1));
             }else {
                 update_user_meta($user_id, "user_views", 1);
+            }
+        }else {
+            if((time() - $_SESSION["views_time"]) > (60 * 60 * 1) ){
+                unset($_SESSION[$views_key]);
             }
         }
         // <!-- VARIABLES -->

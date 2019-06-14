@@ -15,18 +15,24 @@ function drokavoka_scripts() {
 	$vendor_url = get_template_directory_uri()."/assets/vendor";	
 	wp_enqueue_script( 'bootstrap-bundle', $vendor_url."/bootstrap/js/bootstrap.bundle.min.js",array("jQuery"));
 	wp_enqueue_script( 'jquery-easing', $vendor_url."/jquery-easing/jquery.easing.min.js");
-	wp_enqueue_script( 'chart-js', $vendor_url."/chart.js/Chart.min.js");
-	wp_enqueue_script( 'datatables-js', $vendor_url."/datatables/jquery.dataTables.js");
-	wp_enqueue_script( 'datatables-bootstrap', $vendor_url."/datatables/dataTables.bootstrap4.js");
 	wp_enqueue_script( 'select-box', $vendor_url."/jquery.selectbox-0.2.js");
 	wp_enqueue_script( 'retina-replace', $vendor_url."/retina-replace.min.js");
 	wp_enqueue_script( 'magnific-popup', $vendor_url."/jquery.magnific-popup.min.js");
 	// Custom JS
 	if(is_page("dashboard")):
+		wp_enqueue_script( 'chart-js', $vendor_url."/chart.js/Chart.min.js");
+		wp_enqueue_script( 'datatables-js', $vendor_url."/datatables/jquery.dataTables.js");
+		wp_enqueue_script( 'datatables-bootstrap', $vendor_url."/datatables/dataTables.bootstrap4.js");
 		wp_enqueue_script( 'admin', $js_url. '/admin.js');
+		wp_enqueue_script( 'admin-chart', $js_url. '/admin-charts.js',array("chart-js"));
+
 		wp_localize_script("admin","ajax_object", array(
 			"ajax_url"=>admin_url("admin-ajax.php"),
 			'nonce' => wp_create_nonce( "ajax_nounce" )
+		));
+		wp_localize_script("admin-chart","wp", array(
+			"bookings" => get_booking_statistics(),
+			"bookings_label" => __("Clients","drokavoka")
 		));
 	endif;
 

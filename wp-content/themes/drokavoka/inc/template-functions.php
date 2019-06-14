@@ -402,3 +402,26 @@ function get_badge_level($views = 0 ,$clients = 0)
 
 	return $level;
 }
+
+/****************************************** */
+/* Statistics Functions
+/****************************************** */
+function get_booking_statistics(){
+	$user_id = get_current_user_id();
+	$data = array();
+
+	for ($i=1; $i <=12 ; $i++) { 
+		// WP QUERY
+		$args = array(
+			"post_type" => "booking",
+			"author" => $user_id,
+			"post_status" => array( 'pending', 'publish', 'trash' ),
+			"year" => date( 'Y' ),
+			"monthnum" => $i
+		);
+		$bookings = new WP_Query($args);
+		array_push($data,$bookings->found_posts);
+	}
+
+	return $data;
+}

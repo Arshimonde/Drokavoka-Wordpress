@@ -20,11 +20,18 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
         <!-- side nav -->
         <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+            <!-- Dashboard link -->
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="<?=_e("Tableau de bord","drokavoka")?>">
+                <a class="nav-link" href="/dashboard?section=dashboard">
+                    <i class="fa fa-fw fa-dashboard"></i>
+                    <span class="nav-link-text"><?=_e("Tableau de bord","drokavoka")?></span>
+                </a>
+            </li>
             <!-- profil link -->
-            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="<?=_e("Mon profil")?>">
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="<?=_e("Mon profil","drokavoka")?>">
                 <a class="nav-link" href="/dashboard?section=lawyer-profil">
                     <i class="fa fa-fw fa-wrench"></i>
-                    <span class="nav-link-text"><?=_e("Mon profil")?></span>
+                    <span class="nav-link-text"><?=_e("Mon profil","drokavoka")?></span>
                 </a>
             </li>
             <!-- Bookings -->

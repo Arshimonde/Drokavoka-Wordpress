@@ -11,6 +11,10 @@
                include "sections/breadcrumb.php";
                // content
                switch($section){
+                  case "dashboard":{
+                     include "sections/index.php";
+                     break;
+                  }
                   case "lawyer-profil":{
                      include "sections/lawyer-profil.php";
                      break;
