@@ -145,4 +145,16 @@ h3 a:hover{
 .glsr-navigation .nav-links {
    display: flex;
 }
+.rating .shortcode-site-reviews-summary{
+    display: inline-block;
+}
+.rating .shortcode-site-reviews-summary .glsr-default .glsr-summary-stars .glsr-star {
+    width: 15px;
+    height: 15px;
+    background-size: 15px;
+    margin-right: 5px;
+}
+.rating .glsr-ltr .glsr-default .glsr-summary-rating, .rating .glsr-ltr .glsr-default .glsr-summary-stars {
+    margin-right: 0px;
+}
 /* Reviews END*/

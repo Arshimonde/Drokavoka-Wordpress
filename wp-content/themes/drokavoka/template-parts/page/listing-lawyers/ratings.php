@@ -8,19 +8,12 @@
         "meta_value" => $user_id,
     );
     $reviews = new WP_Query($reviews_args);
-    $reviews->the_post();
-    $rating = get_post_meta(get_the_ID(), "rating", true);
+    $rating_html  = do_shortcode('[site_reviews_summary hide="bars,rating,summary" assigned_to="'.$user_id.'"]');
 ?>
 <span class="rating">
     <?php
-    for ($i=0; $i < 5 ; $i++) { 
-        $class = "voted";
-        if($i >= $rating ){
-            $class = "";
-        }
-        echo '<i class="icon_star '.$class.'"></i>';
-    }
-?> 
+        echo $rating_html;
+    ?> 
     <small>(<?=$reviews->found_posts?>)</small>
 </span>  
 <!-- Rating END-->
