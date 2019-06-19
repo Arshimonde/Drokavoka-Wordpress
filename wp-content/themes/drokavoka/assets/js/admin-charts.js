@@ -7,6 +7,7 @@ jQuery(function($) {
   
   $(document).ready(function() {
     var ctx = document.getElementById("myAreaChart");
+    if(!ctx) return;
     var year = new Date().getFullYear();
     var myLineChart = new Chart(ctx, {
       type: 'line',
