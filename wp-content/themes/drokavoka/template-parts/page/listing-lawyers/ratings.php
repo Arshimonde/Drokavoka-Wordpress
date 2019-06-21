@@ -22,7 +22,7 @@
     $level = get_badge_level($views,$clients_count);
     if($level != 0) :
 ?>
-<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<?=__("Niveau","drokavoka")?>" class="badge_list_1">
+<a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<?=__("Niveau","drokavoka")?> <?=$level?>" class="badge_list_1">
     <img 
         src="<?=get_template_directory_uri()?>/assets/images/badges/badge_<?=$level?>.svg" 
         width="15" height="15" alt="badge"

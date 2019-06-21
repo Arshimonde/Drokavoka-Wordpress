@@ -21,7 +21,7 @@ $reviews = new WP_Query($args);
 
 <div class="box_general">
     <div class="header_box">
-        <h2 class="d-inline-block">Reviews List</h2>
+        <h2 class="d-inline-block"><?=_e("Liste des avis","drokavoka")?></h2>
         <div class="filter d-flex" style="width:auto">
             <select id="orderby-reviews" name="orderby-reviews" class="selectbox">
                 <option value="DESC" <?php $order == "DESC" ? print("selected") : "" ;?>>Dernier</option>

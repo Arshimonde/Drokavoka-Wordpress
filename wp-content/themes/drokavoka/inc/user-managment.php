@@ -107,6 +107,13 @@
             update_field("social_media",$social_media,"user_".$user_id);
                 // tarifs
             if(isset($tarifs)){
+                $counter = 0;
+                foreach ($tarifs as $tarif) {
+                    if (empty($tarif["title"])) {
+                        unset($tarifs[$counter]);
+                    }
+                    $counter++;
+                }
                update_field("treatments",$tarifs,"user_".$user_id);
             }
             //return data

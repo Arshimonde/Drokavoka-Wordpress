@@ -158,3 +158,10 @@ h3 a:hover{
     margin-right: 0px;
 }
 /* Reviews END*/
+
+.wpcf7-form-control-wrap.message {
+    background-color: transparent;
+    padding: 0px;
+    margin-bottom: 0px;
+    border-radius: 0px;
+}

@@ -31,7 +31,7 @@
             
         ?>
         <li id="user">
-            <a href="/dashboard">
+            <a href="/dashboard?section=dashboard">
                 <figure>
                     <img 
                         src="<?=$avatar_url?>" 

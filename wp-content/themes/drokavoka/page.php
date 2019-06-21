@@ -43,6 +43,14 @@ get_header();
 				//Confirm booking
 				elseif(is_page("booking-success")):
 					get_template_part("template-parts/page/content","booking-success");
+				elseif(is_page("contact")):
+				?>
+					<div class="container margin_60">
+    					<div class="row">
+							<?php echo do_shortcode('[contact-form-7 id="183" title="Contact us"]'); ?>
+						</div>
+					</div>
+				<?php
 				endif;
 			?>
 		</main><!-- #main -->

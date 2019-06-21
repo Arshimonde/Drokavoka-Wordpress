@@ -139,7 +139,7 @@
         });
       });
       // LAWYER CANCEL BOOKING
-      $(".delete").click(function(evt) {
+      $(".buttons .delete").click(function(evt) {
         evt.preventDefault();
         $(this).html('<i class="fa fa-lg fa-cog fa-spin"></i>');
         var post_id = $(this).data("post_id");

@@ -30,7 +30,7 @@
             </div>
             <p class="text-center link_bright">
                <?=_e(" Vous n'avez pas encore de compte? ")?>
-                <a href="#0">
+                <a href="/signup">
                     <strong><?=_e("Inscrire maintenant!")?></strong>
                 </a>
             </p>

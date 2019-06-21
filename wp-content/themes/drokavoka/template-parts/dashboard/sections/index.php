@@ -26,7 +26,7 @@
     <div class="card dashboard text-white bg-secondary o-hidden h-100">
     <div class="card-body">
         <div class="text-center">
-            <a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<?=__("Niveau","drokavoka")?>" class="badge_list_1">
+            <a href="#" data-toggle="tooltip" data-placement="top" data-original-title="<?=__("Niveau","drokavoka")?> <?=$level?>" class="badge_list_1">
                 <img 
                     src="<?=get_template_directory_uri()?>/assets/images/badges/badge_<?=$level?>.svg" 
                    class="img-fluid" width="80" alt="badge"
@@ -34,7 +34,7 @@
             </a>
         </div>
     </div>
-    <a class="card-footer text-white clearfix small z-1" href="#">
+    <a class="card-footer text-white clearfix small z-1" href="/dashboard?section=badges">
         <span class="float-left"><?=__("Voir les détails","drokavoka")?></span>
         <span class="float-right">
         <i class="fa fa-angle-right"></i>

@@ -65,6 +65,14 @@
                     <span class="nav-link-text"><?=__("Avis","drokavoka") ?></span>
                 </a>
             </li>
+
+            <!-- Badges -->
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="<?=_e("Badge","drokavoka")?>">
+                <a class="nav-link" href="/dashboard?section=badges">
+                    <i class="fa fa-fw fa-trophy"></i>
+                    <span class="nav-link-text"><?=__("Badge","drokavoka") ?></span>
+                </a>
+            </li>
         </ul>
         <!-- side nav END-->
 

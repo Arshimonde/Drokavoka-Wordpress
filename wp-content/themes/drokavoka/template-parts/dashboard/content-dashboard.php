@@ -27,6 +27,10 @@
                      include "sections/reviews.php";
                      break;
                   }
+                  case "badges":{
+                     include "sections/badges.php";
+                     break;
+                  }
                }
 
             endif;

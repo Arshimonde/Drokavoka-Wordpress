@@ -25,6 +25,10 @@
                 $current_bread = __("Avis","drokavoka");
                 break;
             }
+            case "badges":{
+                $current_bread = __("Badges","drokavoka");
+                break;
+            }
         }
     ?>
     <!-- get the current bread end -->

@@ -32,31 +32,18 @@
                     </p>
                 </div>
                 <div class="step">
-                    <?php
-                        $first_name = "";
-                        $last_name = "";
-                        $email = "";
-                        $phone = "";
-                        if(is_user_logged_in()){
-                            $current_user = wp_get_current_user();
-                            $email = $current_user->user_email;
-                            $first_name = $current_user->user_firstname;
-                            $last_name = $current_user->user_lastname;
-                            $phone = get_user_meta($current_user->ID, "phone", true);
-                        }
-                    ?>
-                    <div class="row">
+                     <div class="row">
                         <div class="col-md-6 col-sm-6">
                             <div class="form-group">
                                 <label><?=__("Prénom","drokavoka")?></label>
-                                <input type="text" class="form-control" id="firstname_booking" name="firstname_booking" placeholder="Lorem" value="<?=$first_name?>" required>
+                                <input type="text" class="form-control" id="firstname_booking" name="firstname_booking" placeholder="Lorem" value="" required>
                             </div>
                         </div>
                         <div class="col-md-6 col-sm-6">
                             <div class="form-group">
                                 <label><?=__("Nom","drokavoka")?></label>
                                 <input type="text" class="form-control" id="lastname_booking" name="lastname_booking" placeholder="ipsum" 
-                                value="<?=$last_name?>"
+                                value=""
                                 required>
                             </div>
                         </div>
@@ -66,7 +53,7 @@
                             <div class="form-group">
                                 <label><?=__("Email","drokavoka")?></label>
                                 <input type="email" id="email_booking" name="email_booking" class="form-control"
-                                value="<?=$email?>" placeholder="example@doe.com" required>
+                                value="" placeholder="example@doe.com" required>
                             </div>
                         </div>
                         <div class="col-md-6 col-sm-6">
@@ -83,7 +70,7 @@
                             <div class="form-group">
                                 <label><?=__("Téléphone","drokavoka")?></label>
                                 <input type="text" id="telephone_booking" name="telephone_booking" class="form-control" placeholder="00 00 00 00 00" 
-                                value="<?=$phone?>"
+                                value=""
                                 required>
                             </div>
                         </div>
@@ -120,6 +107,7 @@
                     <ul class="treatments checkout clearfix">
                         <?php
                             $total_price = 0;
+                            if(!empty($needs) && isset($needs)):
                             foreach ($needs as $need) {
                                 $need = explode(";",$need);
                                 $total_price += intval($need[1]);
@@ -129,7 +117,10 @@
                             <?=$need[0]?> 
                             <strong class="float-right"><?=$need[1]?> DH</strong>
                         </li>
-                        <?php } ?>
+                        <?php 
+                            }
+                            endif;
+                        ?>
                         <li class="total">
                             <?=__("Total","drokavoka")?> 
                             <strong class="float-right">
