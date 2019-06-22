@@ -1,5 +1,4 @@
 <div class="box_list wow fadeIn">
-    <a href="#0" class="wish_bt"></a>
     <figure>
         <a href="/lawyer-profil?id=<?=$user_id?>">
             <?php

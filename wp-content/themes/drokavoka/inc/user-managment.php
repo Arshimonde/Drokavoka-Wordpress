@@ -153,7 +153,7 @@
             if(! is_wp_error($user)):
                 //HERE TO CHECK IF USER IS LAWYER OR CLIENT TO REDIRECT
                 wp_set_current_user( $user->ID );
-                $redirect_url  = home_url("dashboard?section=lawyer-profil");
+                $redirect_url  = home_url("dashboard?section=dashboard");
                 wp_send_json_success(array("redirect"=>$redirect_url));
             else:
                 wp_send_json_error(array(

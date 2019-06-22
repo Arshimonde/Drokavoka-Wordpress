@@ -18,10 +18,10 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-05-26 08:27+0000\n"
-"PO-Revision-Date: 2019-05-26 17:44+0000\n"
+"PO-Revision-Date: 2019-06-22 16:14+0000\n"
 "Language: fr_FR\n"
 "X-Generator: Loco https://localise.biz/\n"
-"X-Loco-Version: 2.2.2; wp-5.1"
+"X-Loco-Version: 2.3.0; wp-5.1"
 
 #: activate.php:96
 msgid "The %s plugin was deactivated."
@@ -537,7 +537,7 @@ msgstr "Votre nom"
 
 #: config/forms/submission-form.php:21
 msgid "Tell us your name"
-msgstr "Tell us your name"
+msgstr "Dites-nous votre nom"
 
 #: config/forms/submission-form.php:25
 msgid "Your email"

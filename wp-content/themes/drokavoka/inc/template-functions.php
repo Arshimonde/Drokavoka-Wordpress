@@ -219,6 +219,11 @@ function get_lawyers_listing_query($number_to_display)
 	}
 
 	if(isset($specialty) && !empty($specialty) && $specialty!="-1"){
+		
+		$specialty_parent = get_term_by("term_id",intval($specialty),"lawyer_specialte");
+		$specialty_parent = $specialty_parent->parent;
+
+
 		$specialty_query = array(
 			"relation" => "OR",
 			array(

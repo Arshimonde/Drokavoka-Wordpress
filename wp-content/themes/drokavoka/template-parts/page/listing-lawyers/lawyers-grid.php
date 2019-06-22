@@ -16,7 +16,7 @@
                     $lon = get_user_meta( $user_id,"longitude",true);
 
                     $img_id = get_user_meta($user_id,"wp_user_avatar",true);
-                    $user_avatar_url = wp_get_attachment_image_url($img_id,"medium");
+                    $user_avatar_url = wp_get_attachment_image_url($img_id,"full");
 
                     if(!empty($lat) && !empty($lon)):
                         array_push($addresses,array(
