@@ -18,9 +18,9 @@ get_header();
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main">
 			<?php
-				// if(!is_page("dashboard")):
-				// 	get_template_part("template-parts/header/breadcrumb");
-				// endif;	
+				if(!is_page("dashboard")):
+					get_template_part("template-parts/header/breadcrumb");
+				endif;	
 
 				//Registration Page 
 				if(is_page("signup")):
@@ -43,11 +43,20 @@ get_header();
 				//Confirm booking
 				elseif(is_page("booking-success")):
 					get_template_part("template-parts/page/content","booking-success");
-				elseif(is_page("contact")):
+
+				else: 
 				?>
 					<div class="container margin_60">
     					<div class="row">
-							<?php echo do_shortcode('[contact-form-7 id="183" title="Contact us"]'); ?>
+							<?php 
+								global $post;
+								$my_postid = $post->ID;//This is page id or post id
+								$content_post = get_post($my_postid);
+								$content = $content_post->post_content;
+								$content = apply_filters('the_content', $content);
+								echo "<h1 class='w-100 mb-3'>".get_the_title($post)."</h1>";
+								echo $content;
+							?>
 						</div>
 					</div>
 				<?php

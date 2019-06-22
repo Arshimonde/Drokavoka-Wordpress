@@ -36,7 +36,7 @@
 						<div class="col-lg-3 col-md-4">
 							<h5><?=__("à propos","drokavoka")?></h5>
 							<ul class="links">
-								<li><a href="#0"><?=__("Qui sommes nous ?","drokavoka")?></a></li>
+								<li><a href="/qui-sommes-nous"><?=__("Qui sommes nous ?","drokavoka")?></a></li>
 								<li><a href="/login"><?=__("S'authentifier","drokavoka")?></a></li>
 								<li><a href="/signup"><?=__("S'inscrire","drokavoka")?></a></li>
 							</ul>

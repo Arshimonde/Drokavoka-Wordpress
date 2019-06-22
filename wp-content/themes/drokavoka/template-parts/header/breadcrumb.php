@@ -1,9 +1,8 @@
 <div id="breadcrumb">
     <div class="container">
         <ul>
-            <li><a href="#">test</a></li>
-            <li><a href="#">test2</a></li>
-            <li>Page active</li>
+            <li><a href="/"><?=__("Accueil","drokavoka")?></a></li>
+            <li><?= get_the_title() ?></li>
         </ul>
     </div>
 </div>
