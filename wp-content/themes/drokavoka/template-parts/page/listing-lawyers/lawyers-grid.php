@@ -31,11 +31,13 @@
                     echo '</div>';
                     $marker_key++;
                 endforeach;
-                // pagination
-                include "pagination.php";  
             endif;
             ?>
         </div>
+        <?php
+            // pagination
+            include "pagination.php";  
+        ?>
     </div>
     <aside class="col-lg-4" id="sidebar">
         <?php include "lawyers-map.php"; ?> 

@@ -170,3 +170,12 @@ h3 a:hover{
     list-style: disc;
     padding-left:15px;
 }
+
+
+/* Medium Desktop */
+
+@media only screen and (min-width: 992px) and (max-width: 1199px){
+    footer .contacts li {
+        font-size: 13px;
+    }
+}
